@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801080839) do
+ActiveRecord::Schema.define(version: 20180801082230) do
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "last_name",                            default: "", null: false
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20180801080839) do
     t.datetime "updated_at",                                        null: false
     t.index ["email"], name: "index_owners_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "title",              limit: 65535, null: false
+    t.datetime "closing_date",                     null: false
+    t.integer  "registration_fee",                 null: false
+    t.text     "text",               limit: 65535
+    t.text     "content_of_service", limit: 65535
+    t.text     "benefits",           limit: 65535
+    t.integer  "capacity",                         null: false
+    t.datetime "wanted_period",                    null: false
+    t.text     "contract_period",    limit: 65535
+    t.text     "plan_schedule",      limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
 end
