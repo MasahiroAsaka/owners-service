@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: owners-service_production
-  username: owners-service
-  password: <%= ENV['OWNERS-SERVICE_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
