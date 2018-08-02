@@ -1,0 +1,119 @@
+%body#top{:style => "position: relative; min-width: 100%; min-height: 100%; z-index: 1; box-sizing: border-box;"}
+  #wrapper_mbYTP_bgndVideo.mbYTP_wrapper{:style => "position: fixed; z-index: 0; min-width: 100%; min-height: 100%; left: 0px; top: 0px; overflow: hidden; opacity: 1; backface-visibility: hidden; transition-property: opacity; transition-duration: 2000ms;"}
+    #mbYTP_bgndVideo.playerBox{style: "position: absolute; z-index: 0; width: 1785.6px; height: 810px; top: 0px; left: 0px; overflow: hidden; opacity: 1; margin-top: -100px; margin-left: -172.8px;"}
+      :javascript
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('mbYTP_bgndVideo', {
+            width: '640',
+            height: '360',
+            playerVars : {
+                          'autoplay' : 1,
+                          'rel' : 0,
+                          'showinfo' : 0,
+                          'showsearch' : 0,
+                          'controls' : 0,
+                          'loop' : 1,
+                          'enablejsapi' : 1,
+                          'playlist': 'mjheu0WgJ4c'
+                        },
+            title: 'YouTube video player',
+            videoId: 'mjheu0WgJ4c',
+            events: {
+              'onReady': onPlayerReady,
+            }
+          });
+        }
+        function onPlayerReady(event) {
+          event.target.playVideo();
+        }
+      .YTPOverlay{style: "position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"}
+  #wrapper{style: "position: relative"}
+    #container
+      .hero
+        %header.header
+          = render "header_header"
+          .lead
+            %h2.sprite-2x.message01 とっておきの、オーナーになろう。own your favorite, this is yours.
+            %a.about-btn{:href => "#message"} OWNERSについて
+          %a#bgndVideo.player{"data-property": {videoURL:'https://www.youtube.com/watch?v=mjheu0WgJ4c', containment:'body', autoPlay: 'true', mute:'true', startAt:'0', opacity:'1'}}
+      .sticky
+        = render "sticky"
+      %link{:href => "", :rel => "stylesheet", :type => "text/css"}/
+      #message
+        %p.text01
+          OWNERSは、全国からとっておきの「オーナー制度」を集めた
+          %br/
+          プラットフォームサービスです。
+        %h2
+          %span OWNERS 利用ステップ
+        .step
+          .process
+            %i.sprite-2x.icon-step01
+            %h3
+              %span 1.
+              プランを探す
+            %p 生産者が提供しているプランからお気に入りのオーナー制度を見つけてください
+          .process
+            %i.sprite-2x.icon-step02
+            %h3
+              %span 2.
+              オーナーになる
+            %p 商品の送り先など必要な情報を入力して現在募集中のオーナー制度に登録してください
+          .process
+            %i.sprite-2x.icon-step03
+            %h3
+              %span 3.
+              プロセスを楽しむ
+            %p 生産者から届く生産状況など様々な情報をOWNERS上でチェックすることができます
+          .process
+            %i.sprite-2x.icon-step04
+            %h3
+              %span 4.
+              商品が届く
+            %p
+              お待たせしました！
+              %br>/
+              生産者が育てた商品があなたの元へ届きます
+      #item-bg
+        .items-area
+          .content
+            / アイテムリストここから
+            %a.item-link{:href => "/products/138"}
+              %section.items
+                .status
+                  %p
+                    残りあと
+                    %span 40
+                %figure.item-image
+                  %img{:alt => "", :height => "223", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/w340h223_main_7_IMG_1484.jpg", :ssl => "1", :width => "340"}/
+                %h2 ＜堪能コース＞ プチプチ食感と濃厚な甘酸っぱさにファン急増中。南房総から届く「完熟パッションフルーツ」
+                .info
+                  %p.place
+                    %i.sprite-2x.icon-pin>
+                    千葉県館山市薗
+                  %p.price
+                    %i.sprite-2x.icon-bag>
+                    ¥6,500
+                .owner-info-hover{:style => "display: none; opacity: 1;"}
+                  %figure.shop-partner
+                    %img{:alt => "", :height => "110", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => "110"}/
+                  %p.shop-name RYO’SFARM
+                  .partner-message
+                    %p
+                      南房総の恵みが溢れる町で、こだわりのパッションフルーツを作っています
+          / アイテムリストここまで
+          .more{:style => "opacity: 0;"}
+            %a{:href => "/homes/ajax_list/page:2"}
+              もっと見る
+              %i.sprite-2x.icon-arrow01
+      %footer#footer
+        = render "footer"
+  }
+  %a#page-top{:href => "#wrapper"}
+    %i.sprite-2x.arrow-pagetop
+  %script{:src => "", :type => "text/javascript"}
