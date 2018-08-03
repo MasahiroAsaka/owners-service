@@ -1,0 +1,55 @@
+/ %h2 Sign up
+/ = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/   = devise_error_messages!
+/   .field
+/     = f.label :email
+/     %br/
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .field
+/     = f.label :password
+/     - if @minimum_password_length
+/       %em
+/         (#{@minimum_password_length} characters minimum)
+/     %br/
+/     = f.password_field :password, autocomplete: "off"
+/   .field
+/     = f.label :password_confirmation
+/     %br/
+/     = f.password_field :password_confirmation, autocomplete: "off"
+/   .actions
+/     = f.submit "Sign up"
+/ = render "devise/shared/links"
+
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "form" }) do |f|
+  .container.signup_login_content.align-content-center.text-center
+    %nav.nav.nav-pills.nav-justified.mb-3.d-lg-none
+      %a.nav-item.nav-link.active{href: "/owners/sign_up"} 会員登録
+      %a.nav-item.nav-link{href: "/owners/signin"} ログイン
+    .text-center.mb-3
+      .container-fluid
+        .row
+          .col
+    .form-group.signup
+      %h5
+        オーナープランのお申込みには
+        %br.d-lg-none
+        会員登録が必要です
+      %button#facebook_signup_button.button.facebook
+        %i.button_facebook
+          %i.fab.fa-facebook-square
+        Facebook で会員登録する
+      %p
+        Facebookアカウントを
+        %br.d-lg-none
+        お持ちでない方はこちら
+      .mx-auto.email_signup_form.mb-3
+        = f.text_field :last_name, placeholder: "姓", id: "signup_family_name", class: "form-control rounded-top"
+        = f.text_field :first_name, placeholder: "名", id: "signup_given_name", class: "form-control"
+        = f.email_field :email, placeholder: "メールアドレス", id: "signup_email", class: "form-control"
+        = f.password_field :password, placeholder: "パスワード", id: "signup_password", class: "form-control"
+      = f.submit "メールアドレスで会員登録する", class: "button email"
