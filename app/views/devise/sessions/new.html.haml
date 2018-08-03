@@ -1,17 +1,30 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+= form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: "form" }) do |f|
+  .container.signup_login_content.align-content-center.text-center
+    %nav.nav.nav-pills.nav-justified.mb-3.d-lg-none
+      %a.nav-item.nav-link.active{href: "/owners/sign_up"} 会員登録
+      %a.nav-item.nav-link{href: "/owners/sign_in"} ログイン
+    .text-center.mb-3
+      .container-fluid
+        .row
+          .col
+    .form-group.signup
+      %h5
+        オーナープランのお申込みには
+        %br.d-lg-none
+        ログインが必要です
+      %button#facebook_signup_button.button.facebook
+        %i.button_facebook
+          %i.fab.fa-facebook-square
+        Facebook で会員登録する
+      .divider-or
+        %p
+          または
+      .mx-auto.email_signup_form.mb-3
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", id: "signup_email", class: "form-control"
+        = f.password_field :password, autocomplete: "off", placeholder: "パスワード", id: "signup_password", class: "form-control"
+      = f.submit "メールアドレスでログインする", class: "button email"
