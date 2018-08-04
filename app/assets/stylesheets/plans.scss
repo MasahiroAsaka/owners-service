@@ -45,6 +45,8 @@ h2 {
     margin-after: 0.83em;
     margin-start: 0px;
     margin-end: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     font-weight: bold;
 }
 
@@ -717,4 +719,50 @@ audio, canvas, iframe, img, svg, video {
     width: 26px;
     height: 23px;
     background-size: 751px 211px;
+}
+
+//After Owner logged in
+.dropdown, .dropleft, .dropright, .dropup {
+    position: relative;
+}
+
+div.authenticated_header_menu button {
+    background: 0 0;
+    border: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    color: #fff;
+    outline: 0;
+}
+
+div.authenticated_header_menu button img {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin-left: 10px;
+    margin-right: 6px;
+}
+
+div.authenticated_header_menu button.dark {
+    color: #2e1d07;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
 }
