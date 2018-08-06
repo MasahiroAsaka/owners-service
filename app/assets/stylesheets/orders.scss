@@ -1,0 +1,858 @@
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+//申込みの流れ
+.d-none {
+    display: none!important;
+}
+
+.d-lg-block {
+    display: block!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.justify-content-center {
+    justify-content: center!important;
+}
+
+.progress_header {
+    height: 61px;
+    background-color: #f1eee8;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+
+.justify-content-start {
+    justify-content: flex-start!important;
+}
+
+.progress_header .progress_arrow .progress_title, .progress_header .progress_arrow .backlog, .progress_header .progress_arrow .done, .progress_header .progress_arrow .wip {
+    padding: 0 21px;
+    margin-left: 5px;
+}
+
+.progress_header .progress_arrow .wip {
+    background-color: #3d2811;
+}
+
+.font_wip, .progress_header .progress_arrow .wip, .progress_header_sp .progress_arrow .wip {
+    color: #fff;
+}
+
+.font_backlog, .font_done, .font_progress_basic, .font_wip, .progress_header .progress_arrow .backlog, .progress_header .progress_arrow .done, .progress_header .progress_arrow .wip, .progress_header_sp .progress_arrow .backlog, .progress_header_sp .progress_arrow .done, .progress_header_sp .progress_arrow .wip {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+}
+
+.progress_basic_style, .progress_header .progress_arrow , .progress_header_sp .progress_arrow  {
+    height: 28px;
+    max-height: 28px;
+    line-height: 28px;
+}
+
+.progress_header .progress_arrow .arrow_right_wip {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 14px solid #3d2811;
+    margin-right: 5px;
+}
+
+.progress_header .progress_arrow .backlog {
+    background-color: #fff;
+}
+
+.font_backlog, .progress_header .progress_arrow .backlog, .progress_header_sp .progress_arrow .backlog {
+    color: #9a8e76;
+}
+
+.progress_header .progress_arrow .arrow_right_backlog {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 14px solid #fff;
+    margin-right: 5px;
+}
+
+.purchase_title {
+    background-color: #f1eee8;
+    height: 89px;
+    line-height: 89px;
+    text-align: center;
+}
+
+.text-nowrap {
+    white-space: nowrap!important;
+}
+
+.purchase_title .title {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #3d2811;
+}
+
+.purchase_guide_message {
+    background-color: #fff;
+    height: 89px;
+    line-height: 89px;
+}
+
+.purchase_guide_message .title {
+    width: 100%;
+    max-width: 1000px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #3d2811;
+}
+
+
+//申込みフォーム
+//タイトル・写真など
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.select_course_container {
+    max-width: 1000px;
+}
+
+@media(min-width: 768px){
+  .justify-content-md-center {
+      justify-content: center!important;
+  }
+}
+
+.col-md-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+
+.cource { //originalは .card
+    max-width: 340px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    background-color: #f1eee8;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+
+  .card_img_top {
+    width: 100%;
+  }
+
+  .card_title {
+    margin-top: 13px;
+    display: flex;
+    justify-content: space-between;
+
+    .owners_icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 36px;
+      background-color: #fff;
+      color: gray;
+      border: 2px solid #dedede;
+      position: relative;
+      padding: 0;
+      line-height: 60px;
+      margin-top: -35px;
+      margin-left: 13px;
+    }
+
+    h5 {
+      max-width: 230px;
+      text-align: left;
+      font-size: 15px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #2d1d0a;
+      margin-right: 15px;
+    }
+
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 35px;
+    margin-bottom: 13px;
+
+    .location {
+      height: 22px;
+      border-radius: 20px;
+      background-color: #fff;
+      margin-left: 14px;
+      display: flex;
+      justify-content: space-between;
+
+      .location_icon {
+        margin-left: 10px;
+        margin-right: 3px;
+      }
+
+      .location_name {
+        margin-left: 3px;
+        margin-right: 8px;
+        font-size: 13px;
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #6b6049;
+      }
+
+    }
+
+    h6.price {
+      margin-right: 14px;
+      font-size: 12px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: #2d1d0a;
+    }
+
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+//コース名・価格など
+.m-0 {
+    margin: 0!important;
+}
+
+.p-0 {
+    padding: 0!important;
+}
+
+.select_course_container .right .plan_sp {
+    background-color: #f1eee8;
+    border-top: solid 1px #c7bfaf;
+}
+
+.d-block {
+    display: block!important;
+}
+
+.d-xl-none {
+    display: none!important;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.media {
+    display: flex;
+    align-items: flex-start;
+}
+
+.select_course_container .right .plan_sp img {
+    width: 100px;
+    height: auto;
+}
+
+.mr-2, .mx-2 {
+    margin-right: .5rem!important;
+}
+
+.select_course_container .right .plan_sp .media-body {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+}
+
+.select_course_container .right #select_course {
+    border: solid 1px #c7bfaf;
+    min-width: 300px;
+
+  .thead {
+    height: 43px;
+    line-height: 43px;
+    background-color: #f1eee8;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: #3d2811;
+  }
+
+  .triangle_container {
+    display: relative;
+    max-width: 30px;
+    cursor: pointer;
+
+    .triangle {
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+      line-height: 20px;
+      transition: all .3s 0s ease;
+      transform-origin: center center;
+    }
+
+  }
+
+  .course_title {
+    min-width: 350px;
+
+    p.price {
+      font-size: 14px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #2d1d09;
+    }
+
+  }
+
+  .tbody {
+    border-top: solid 1px #c7bfaf;
+    background-color: #fff;
+    min-height: 56px;
+  }
+
+  img.count_button {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+}
+
+.text-right {
+    text-align: right!important;
+}
+
+.text-left {
+    text-align: left!important;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+.align-self-center {
+    -ms-flex-item-align: center!important;
+    align-self: center!important;
+}
+
+.pb-1, .py-1 {
+    padding-bottom: .25rem!important;
+}
+
+b, strong {
+    font-weight: bolder;
+}
+
+.select_course_container .right .selected_course_sum {
+    position: relative;
+    width: 100%;
+    height: 117px;
+    text-align: right;
+
+  .tax_shipping_fee {
+    position: absolute;
+    top: 48px;
+    right: 34px;
+    width: 100px;
+    height: 13px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #7f786b;
+  }
+
+  .sum_title {
+    position: absolute;
+    top: 69px;
+    right: 203px;
+    width: 36px;
+    height: 18px;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #3d2811;
+  }
+
+  .sum {
+    position: absolute;
+    top: 69px;
+    right: 34px;
+    width: 120px;
+    height: 18px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #3d2811;
+  }
+
+  hr {
+    position: absolute;
+    top: 103px;
+    right: 0;
+    width: 253px;
+    height: 1px;
+  }
+
+}
+
+.select_course_container .right input[type=submit] {
+    width: 256px;
+    height: 48px;
+    margin-top: 34px;
+    margin-bottom: 34px;
+}
+
+//お届け先の指定
+.progress_header .progress_arrow .done {
+    background-color: #dbd4c5;
+}
+
+.progress_header .progress_arrow .arrow_right_done, .progress_header .progress_header_sp .progress_arrow .arrow_right_done_last, .progress_header_sp .progress_header .progress_arrow .arrow_right_done_last {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 14px solid #dbd4c5;
+    margin-right: 5px;
+}
+
+.purchase_main_container {
+    max-width: 1000px;
+}
+
+table.address_table {
+    border: solid 1px #c7bfaf;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+
+  .course_info {
+    width: 203px;
+    max-width: 203px;
+  }
+
+  td, th {
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    border: solid 1px #c7bfaf;
+    min-height: 43px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  th {
+    font-size: 14px;
+    color: #3d2811;
+    line-height: 43px;
+    background-color: #f1eee8;
+  }
+
+  td {
+    font-size: 14px;
+    color: #3d2811;
+    padding: 20px;
+    background-color: #fff;
+
+    h3 {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.25;
+      color: #3d2811;
+    }
+
+    .price {
+      margin-bottom: 30px;
+      font-size: 14px;
+      line-height: 1.43;
+      color: #3d2811;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 400;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.36;
+      letter-spacing: normal;
+      color: #3d2811;
+
+      span {
+        font-size: 14px;
+        line-height: normal;
+        letter-spacing: normal;
+        font-weight: 700;
+      }
+
+    }
+
+    a.address_button {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      width: 189px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 4px;
+      background-color: #fff;
+      border: solid 1px #2d1d09;
+      margin-top: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      color: #38280a;
+    }
+
+    .card {
+      border: solid 1px #2d1d09;
+      background-color: #f5f2ec;
+    }
+
+    label.required {
+      color: red;
+    }
+
+  }
+
+}
+
+@media (min-width: 992px){
+  .d-lg-none {
+    display: none!important;
+  }
+}
+
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+
+form-check-input {
+  position: absolute;
+  margin-top: .3rem;
+  margin-left: -1.25rem;
+}
+
+input[type=radio]+label {
+  padding: 5px;
+  height: 38px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.select_address_type {
+    text-align: right;
+}
+
+.pt-2, .py-2 {
+    padding-top: .5rem!important;
+}
+
+a.separated {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #3d2811;
+}
+
+a.white, button.white, input.white {
+    font-size: 16px;
+    font-size: 1rem;
+    position: relative;
+    height: 40px;
+    -webkit-appearance: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #427833;
+    border-radius: 4px;
+    background-color: #427833;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    transition: all .2s;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    background-color: #fff;
+    color: #427833;
+    border-color: #427833;
+    border-width: 1px;
+}
+
+a.white i.arrow_left_green, button.white i.arrow_left_green, input.white i.arrow_left_green {
+    left: 11px;
+}
+
+a.white, button.submit_button, button.white {
+    width: 270px;
+    height: 48px;
+    line-height: 48px;
+    margin-left: 22px;
+}
+
+//お申し込み内容・お届け先の確認
+td.address_info span {
+    font-weight: 700;
+}
+
+td.address_info div.address_container {
+    position: relative;
+
+  a.edit_button {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 4px;
+    background-color: #3d2811;
+    border: 0;
+    cursor: pointer;
+
+    img {
+      display: inline;
+      width: 12px;
+      height: 12px;
+      margin-top: 9px;
+      margin-left: 10px;
+    }
+
+  }
+
+}
+
+.single-column {
+    max-width: 740px;
+    margin: 0 auto 100px;
+    border: 1px solid #d2cec7;
+    position: relative;
+    box-sizing: border-box;
+    padding: 40px 30px;
+    background: #fff;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  h2.center {
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .term-box {
+    margin-top: 30px;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+}
+
+.terms {
+    max-width: 100%;
+    height: 133px;
+    margin-top: 27px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: solid 1px #ccc;
+    overflow-y: scroll;
+}
+
+.terms {
+    margin-bottom: 20px;
+}
+
+//支払い方法の選択
+div.total_price {
+    width: 100%;
+    min-width: 300px;
+    max-width: 350px;
+    height: 145px;
+    border: solid 1px #c7bfaf;
+    margin-bottom: 39px;
+    background-color: #fff;
+
+  div.title {
+    height: 56px;
+    line-height: 56px;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3d2811;
+  }
+
+  .separator {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background-color: #c7bfaf;
+  }
+
+  .price {
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3d2811;
+  }
+
+  .tax_shipping_fee {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #7f786b;
+  }
+
+}
+
+.button_row {
+    height: 68px;
+}
+
+.button_row a.button, .button_row a.white {
+    width: 288px;
+    height: 48px;
+    line-height: 48px;
+    margin: 0; //originalにはない
+}
+
+a.button i.fa-store, button i.fa-store, input[type=submit] i.fa-store {
+    left: 14px;
+}
+
+a.button i.fa-credit-card, button i.fa-credit-card, input[type=submit] i.fa-credit-card {
+    left: 14px;
+}
+
+a.button i.fa-angle-right, button i.fa-angle-right, input[type=submit] i.fa-angle-right {
+    right: 11px;
+}
+
+a.white i.fa-angle-left, button.white i.fa-angle-left, input.white i.fa-angle-left {
+    left: 11px;
+}
+
+.button_arrow, .button_outline_brown i.button_arrow_left_brown, .button_outline_brown i.button_arrow_right_brown, a.button i.fa-angle-right, a.button i.fa-credit-card, a.button i.fa-store, a.white i.fa-angle-left, button i.fa-angle-right, button i.fa-credit-card, button i.fa-store, button.white i.fa-angle-left, input.white i.fa-angle-left, input[type=submit] i.fa-angle-right, input[type=submit] i.fa-credit-card, input[type=submit] i.fa-store {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

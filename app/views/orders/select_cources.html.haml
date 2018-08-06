@@ -1,0 +1,49 @@
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+.d-none.d-lg-block
+  .d-flex.justify-content-center.align-items-center.w-100.progress_header
+    .d-flex.justify-content-start.progress_arrow
+      .done 1. コース選択
+      .arrow_right_done
+      .done 2. お届け先の指定
+      .arrow_right_done
+      .done 3. 申し込み内容・お届け先の確認
+      .arrow_right_done
+      .wip 4. お支払い
+      .arrow_right_wip
+      .backlog 5. 完了
+      .arrow_right_backlog
+.purchase_title.d-none.d-lg-block
+  .title.mx-auto.text-nowrap お支払い方法の選択
+.purchase_guide_message.d-none.d-lg-block
+  .title.mx-auto.text-center
+    お支払い方法をお選びください
+
+.container.pay_method_container
+  .row
+    .col
+      .mx-auto.total_price
+        .text-center.title お支払い金額
+        .separator
+        .text-center.price 4,900 円
+        .text-center.tax_shipping_fee (税・送料込み)
+  .row.button_row
+    .col.text-center
+      %a.button{href: "/orders/purchase/cvs/118"}
+        %i.fas.fa-store
+        コンビニ決済
+        %i.fas.fa-angle-right
+  .row.button_row
+    .col.text-center
+      %a.button{href: "/orders/purchase/credit_card/118"}
+        %i.far.fa-credit-card
+        クレジットカード決済
+        %i.fas.fa-angle-right
+  .row.button_row
+    .col.text-center
+      %a.white{href: ""}
+        %i.fas.fa-angle-left
+        戻る

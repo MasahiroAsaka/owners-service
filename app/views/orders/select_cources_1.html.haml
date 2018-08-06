@@ -1,0 +1,134 @@
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+.d-none.d-lg-block
+  .d-flex.justify-content-center.align-items-center.w-100.progress_header
+    .d-flex.justify-content-start.progress_arrow
+      .wip 1. コース選択
+      .arrow_right_wip
+      .backlog 2. お届け先の指定
+      .arrow_right_backlog
+      .backlog 3. 申し込み内容・お届け先の確認
+      .arrow_right_backlog
+      .backlog 4. お支払い
+      .arrow_right_backlog
+      .backlog 5. 完了
+      .arrow_right_backlog
+.purchase_title.d-none.d-lg-block
+  .title.mx-auto.text-nowrap お申し込みプラン・コースの確認
+.purchase_guide_message.d-none.d-lg-block
+  .title.mx-auto.text-center 各コースの口数を設定し、ご確認のうえ先におすすみください。
+
+%form#form{method: "POST"}
+  .container-fluid.select_course_container
+    .row
+      .col
+        .container-fluid
+          .row
+            .col
+    .row.justify-content-md-center
+      .col-md-auto.d-none.d-lg-block.left
+        .card.cource
+          %img.card_img_top{alt: "plan_img", src: "https://d1xgtamobon6ik.cloudfront.net/images/plan/145/image_square/20180729130231.jpg"}
+          .card_body
+            .card_title
+              %img.owners_icon{alt: "owner_icon", src: "https://d1xgtamobon6ik.cloudfront.net/producer/41/profile_image/20180729130204.jpg"}
+              %h5 熊野古道の自然に守られて育った、真っ赤な果実。皮ごと食べられる「樹上完熟イチジク」
+            .footer
+              .location
+                %img.location_icon{src: "https://d1xgtamobon6ik.cloudfront.net/static/images/index/icon-location.svg"}
+                %h7.location_name 和歌山県海南市
+              %h6.price 3,200 円 〜
+      .col.right.m-0.p-0
+        .plan_sp.d-block.d-lg-none.d-xl-none
+          %ul.list-unstyled.mb-0
+            %li.media
+              %img.mr-2{alt: "", src: "https://d1xgtamobon6ik.cloudfront.net/images/plan/145/image_square/20180729130231.jpg"}
+              .media-body
+                %h5.mt-2.mb-0 熊野古道の自然に守られて育った、真っ赤な果実。皮ごと食べられる「樹上完熟イチジク」
+        #select_course.container-fluid
+          .d-none.d-lg-block
+            .row.thead
+              .col.triangle_container
+              .col.course_title コース名/価格
+              .col.text-center 口数
+              .col.text-right 小計
+          #accordion_heading_145.row.tbody
+            .col.p-0.triangle_container.d-flex.align-items-center{onclick: "toggleCollapse('145')"}
+              #triangle_145.text-center.triangle ▶
+            .col.pt-1.pb-1.text-left.align-self-center.course_title{onclick: "toggleCollapse('145')"}
+              %strong.title お気軽「樹上完熟イチジク」コース
+              %p.mb-0.price 3,200 円 / 1口
+            .col.text-center.align-self-center.course_count_container
+              %img#count_button_decrement_145.count_button{"data-image-disabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus-disabled.svg", "data-image-enabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus.svg", onclick: "decrement('145')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus.svg"}
+              %span#count_145.course_count 1
+              %img.count_button{onclick: "increment('145')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-plus.svg"}
+              %input#hidden_count_145.order-counter{type: "hidden", value: "1"}
+            #subtotal_145.col.text-center.align-self-center.d-none.d-lg-block{"data-price": "3200"} 3,200 円
+          .row
+            #accordion_body_145.collapse.col.align-self-center.course_detail{"aria-labelledby": "accordion_heading_145", "data-parent": "#select_course"}
+              .container.select_course_container
+                .row.justify-content-md-center
+                  .col-md-auto.d-none.d-lg-block.left
+                    %img{alt: "", src: "https://d1xgtamobon6ik.cloudfront.net/tmp/3Y2ND5kSuKVTnD7txDMYgE"}
+                  .col.right
+                    %h3 お届け概要
+                    %p
+                      商品：樹上完熟イチジク12玉
+                      %br>
+                      時期：7月下旬~8月下旬より順次お届け
+                      %br
+                      = succeed "\u{203b}\u{304a}\u{5c4a}\u{3051}\u{6642}\u{9593}\u{5e2f}\u{306e}\u{307f}\u{3054}\u{6307}\u{5b9a}\u{53ef}\u{80fd}\u{3067}\u{3059}\u{3002}\u{767a}\u{9001}\u{6642}\u{671f}\u{304a}\u{3088}\u{3073}\u{3054}\u{6307}\u{5b9a}\u{65b9}\u{6cd5}\u{306b}\u{3064}\u{3044}\u{3066}\u{306f}\u{4e8b}\u{524d}\u{306b}\u{3054}\u{6848}\u{5185}\u{3044}\u{305f}\u{3057}\u{307e}\u{3059}\u{3002}" do
+                        %br/
+          #accordion_heading_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.row.tbody
+            .col.p-0.triangle_container.d-flex.align-items-center{onclick: "toggleCollapse('20180729131657-1MHIV1eU7lMDv9P-eQ8xFv')"}
+              #triangle_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.text-center.triangle ▶
+            .col.pt-1.pb-1.text-left.align-self-center.course_title{onclick: "toggleCollapse('20180729131657-1MHIV1eU7lMDv9P-eQ8xFv')"}
+              %strong.title みんなで「樹上完熟イチジク」コース
+              %p.mb-0.price 5,600 円 / 1口
+            .col.text-center.align-self-center.course_count_container
+              %img#count_button_decrement_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.count_button{"data-image-disabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus-disabled.svg", "data-image-enabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus.svg", onclick: "decrement('20180729131657-1MHIV1eU7lMDv9P-eQ8xFv')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus-disabled.svg"}/
+              %span#count_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.course_count 0
+              %img.count_button{onclick: "increment('20180729131657-1MHIV1eU7lMDv9P-eQ8xFv')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-plus.svg"}
+              %input#hidden_count_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.order-counter{type: "hidden", value: "0"}
+            #subtotal_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.col.text-center.align-self-center.d-none.d-lg-block{"data-price": "5600"} 0 円
+          .row
+            #accordion_body_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv.collapse.col.align-self-center.course_detail{"aria-labelledby": "accordion_heading_20180729131657-1MHIV1eU7lMDv9P-eQ8xFv", "data-parent": "#select_course"}
+              .container.select_course_container
+                .row.justify-content-md-center
+                  .col-md-auto.d-none.d-lg-block.left
+                    %img{alt: "", src: "https://d1xgtamobon6ik.cloudfront.net/tmp/4UJkOjM-Y2kIU5thfesm1P"}
+                  .col.right
+                    %h3 お届け概要
+                    %p
+                      商品：樹上完熟イチジク24玉
+                      %br>
+                      時期：7月下旬~8月下旬より順次お届け
+                      %br
+                      = succeed "\u{203b}\u{304a}\u{5c4a}\u{3051}\u{6642}\u{9593}\u{5e2f}\u{306e}\u{307f}\u{3054}\u{6307}\u{5b9a}\u{53ef}\u{80fd}\u{3067}\u{3059}\u{3002}\u{767a}\u{9001}\u{6642}\u{671f}\u{304a}\u{3088}\u{3073}\u{3054}\u{6307}\u{5b9a}\u{65b9}\u{6cd5}\u{306b}\u{3064}\u{3044}\u{3066}\u{306f}\u{4e8b}\u{524d}\u{306b}\u{3054}\u{6848}\u{5185}\u{3044}\u{305f}\u{3057}\u{307e}\u{3059}\u{3002}" do
+                        %br
+                    %h3 その他注意点
+                    %p お気軽コースと比べ、送料分800円がお得になります。ぜひお近くの方と一緒に買ったり、おすそ分けにどうぞ。
+        .selected_course_sum.d-none.d-lg-block.left
+          .tax_shipping_fee (税・送料込み)
+          .sum_title 合計
+          #sum.sum 3,200 円
+          %hr
+        .container.d-none.d-lg-block.left
+          .row
+            .col.text-right
+              %input{type: "submit", value: "お届け先指定へ"}
+  .d-block.d-lg-none{style: "height: 114px"}
+  .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
+    .text-center.total_price_section
+      %span.total_price
+        合計
+        %span#sum_sp 3,200
+        円
+      %span.tax_shipping_fee (税・送料込)
+    %button.justify-content-center.button_footer_sp.w-100{onclick: "$('#form').submit()", type: "button"} お届け先指定へ
+  %input#course_id_list{name: "course_id_list", type: "hidden"}
+  %input#course_count_list{name: "course_count_list", type: "hidden"}
+  %input{name: "csrf_token", type: "hidden", value: "IjlhYzA0OGFjMGZhYzhjYzBhZWNmMmRlZTRhMzI3ZmQ5YjM2NDM1Njki.DkbPbA.JpNrbLOO7D5YDQxGDIQ3R3lcx0E"}
