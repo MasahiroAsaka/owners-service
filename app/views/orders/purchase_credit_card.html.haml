@@ -1,0 +1,131 @@
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+.d-none.d-lg-block
+  .d-flex.justify-content-center.align-items-center.w-100.progress_header
+    .d-flex.justify-content-start.progress_arrow
+      .done 1. コース選択
+      .arrow_right_done
+      .done 2. お届け先の指定
+      .arrow_right_done
+      .done 3. 申し込み内容・お届け先の確認
+      .arrow_right_done
+      .wip 4. お支払い
+      .arrow_right_wip
+      .backlog 5. 完了
+      .arrow_right_backlog
+.purchase_title.d-none.d-lg-block
+  .title.mx-auto.text-nowrap クレジットカード情報の入力
+.purchase_guide_message.d-none.d-lg-block
+  .title.mx-auto.text-center
+    クレジットカード決済の必要事項をご記入ください。
+
+%form#getTokenForm
+  .container-fluid.purchase_main_container
+    .row
+      .col-md-12
+    .row.justify-content-md-center
+      .col-md-auto.d-none.d-lg-block
+        .mx-auto.total_price
+          .text-center.title お支払い金額
+          .separator
+          .text-center.price 4,900 円
+          .text-center.tax_shipping_fee (税・送料込み)
+      .col.right.m-0.p-0
+        %table.table.purchase_table
+          %tbody
+            %tr
+              %th.d-none.d-lg-block お支払い方法
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp お支払い方法
+                一括
+            %tr
+              %th.d-none.d-lg-block カード番号
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp カード番号
+                ハイフン無しで、数字のみご入力ください。
+                %input#cardno.form-control{:name => "cardno", :required => "", :type => "text", :value => ""}/
+                .mt-2.d-none.d-lg-block
+                  %strong 対応カード
+                %img{:alt => "", :height => "35", :src => "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/credit_card.gif", :width => "103"}/
+            %tr
+              %th.d-none.d-lg-block カード有効期限
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp カード有効期限
+                .form-inline
+                  %select#expire_month.form-control{:name => "expire_month"}
+                    %option{:value => ""} -
+                    %option{:value => "01"} 01
+                    %option{:value => "02"} 02
+                    %option{:value => "03"} 03
+                    %option{:value => "04"} 04
+                    %option{:value => "05"} 05
+                    %option{:value => "06"} 06
+                    %option{:value => "07"} 07
+                    %option{:value => "08"} 08
+                    %option{:value => "09"} 09
+                    %option{:value => "10"} 10
+                    %option{:value => "11"} 11
+                    %option{:value => "12"} 12
+                  %span.mx-2 月
+                  %select#expire_year.form-control{:name => "expire_year"}
+                    %option{:value => ""} -
+                    %option{:value => "2018"} 2018
+                    %option{:value => "2019"} 2019
+                    %option{:value => "2020"} 2020
+                    %option{:value => "2021"} 2021
+                    %option{:value => "2022"} 2022
+                    %option{:value => "2023"} 2023
+                    %option{:value => "2024"} 2024
+                    %option{:value => "2025"} 2025
+                    %option{:value => "2026"} 2026
+                    %option{:value => "2027"} 2027
+                    %option{:value => "2028"} 2028
+                    %option{:value => "2029"} 2029
+                    %option{:value => "2030"} 2030
+                    %option{:value => "2031"} 2031
+                    %option{:value => "2032"} 2032
+                    %option{:value => "2033"} 2033
+                    %option{:value => "2034"} 2034
+                    %option{:value => "2035"} 2035
+                    %option{:value => "2036"} 2036
+                    %option{:value => "2037"} 2037
+                    %option{:value => "2038"} 2038
+                  %span.mx-2 年
+            %tr
+              %th.d-none.d-lg-block カード名義人
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp カード名義人
+                %input#holdername.form-control{:name => "holdername", :required => "", :type => "text", :value => ""}/
+            %tr
+              %th.d-none.d-lg-block セキュリティコード
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp セキュリティコード
+                %input#securitycode.form-control{:name => "securitycode", :required => "", :type => "text", :value => ""}/
+        .w-100.d-none.d-lg-block
+          .row
+            .col-4.pr-0
+              %a.white.w-100{:href => "/orders/payment_method/118"}
+                %i.fas.fa-angle-left
+                戻る
+            .col-8
+              %a{href: "/orders/purchase/confirimng/118"} 決済を確定する
+              / %button.button.green.w-100.is_complete.d-flex.align-items-center.justify-content-center{:onclick => "purchase('9100565616467')", :type => "button"} 決済を完了する
+  .d-block.d-lg-none{:style => "height: 114px"}
+  .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
+    .text-center.total_price_section
+      %span.total_price
+        合計
+        %span#sum_sp 4,900
+        円
+      %span.tax_shipping_fee (税・送料込)
+    %button.justify-content-center.button_footer_sp.w-100{:onclick => "purchase('9100565616467')", :type => "button"} 決済を完了する
+  %input#tokennumber{:name => "tokennumber", :type => "hidden", :value => "1"}/
+

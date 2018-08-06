@@ -61,22 +61,6 @@ form {
     padding: .5rem 1rem;
 }
 
-.container-fluid {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.row {
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
 .col {
     flex-basis: 0;
     flex-grow: 1;
@@ -216,20 +200,6 @@ button {
 .rounded-top {
     border-top-left-radius: .25rem!important;
     border-top-right-radius: .25rem!important;
-}
-
-.form-control {
-    display: block;
-    width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .signup_login_content div.login input:last-of-type, .signup_login_content div.signup input:last-of-type {

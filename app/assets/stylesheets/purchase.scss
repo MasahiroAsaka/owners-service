@@ -1,0 +1,50 @@
+//コンビニ決済
+.total_price {
+    width: 100%;
+    min-width: 300px;
+    max-width: 350px;
+    height: 145px;
+    border: solid 1px #c7bfaf;
+    margin-bottom: 39px;
+    background-color: #fff;
+}
+
+@media screen and (min-width: 992px){
+  table.purchase_table {
+      background-color: #f1eee8;
+  }
+}
+
+@media screen and (min-width: 992px){
+  table.purchase_table {
+      border: solid 1px #c7bfaf;
+      border-collapse: collapse;
+      border-spacing: 0;
+
+    td {
+      background-color: #fff;
+    }
+  }
+}
+
+.button.is_complete {
+    font-size: 18px;
+    line-height: inherit;
+    letter-spacing: .14rem;
+}
+
+a.button, a.white, button {
+    width: auto;
+    height: 48px;
+    line-height: 48px;
+    margin-left: 0; //originalにはなし
+}
+
+//クレジットカード決済
+#expire_month, #expire_year {
+    width: 90px;
+}
+
+#securitycode {
+    width: 126px;
+}

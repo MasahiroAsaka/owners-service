@@ -1,0 +1,96 @@
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+.d-none.d-lg-block
+  .d-flex.justify-content-center.align-items-center.w-100.progress_header
+    .d-flex.justify-content-start.progress_arrow
+      .done 1. コース選択
+      .arrow_right_done
+      .done 2. お届け先の指定
+      .arrow_right_done
+      .done 3. 申し込み内容・お届け先の確認
+      .arrow_right_done
+      .wip 4. お支払い
+      .arrow_right_wip
+      .backlog 5. 完了
+      .arrow_right_backlog
+.purchase_title.d-none.d-lg-block
+  .title.mx-auto.text-nowrap コンビニエンスストアでお支払い
+.purchase_guide_message.d-none.d-lg-block
+  .title.mx-auto.text-center
+    お支払い内容を入力してください。
+
+%form#cvs_form{:method => "POST"}
+  .container-fluid.purchase_main_container
+    .row.justify-content-md-center
+      .col.m-0.p-0
+    .row.justify-content-md-center
+      .col-md-auto.d-none.d-lg-block
+        .mx-auto.total_price
+          .text-center.title お支払い金額
+          .separator
+          .text-center.price 4,900 円
+          .text-center.tax_shipping_fee (税・送料込み)
+      .col.right.m-0.p-0
+        %table.table.purchase_table
+          %tbody
+            %tr
+              %th.d-none.d-lg-block コンビニエンスストアを選択
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp コンビニエンスストアを選択
+                %select.form-control{:name => "cvs_code", :required => ""}
+                  %option{:value => ""} -
+                  %option{:value => "00001"} ローソン
+                  %option{:value => "00002"} ファミリーマート
+                  %option{:value => "00003"} サンクス
+                  %option{:value => "00004"} サークルＫ
+                  %option{:value => "00005"} ミニストップ
+                  %option{:value => "00006"} デイリーヤマザキ
+                  %option{:value => "00008"} セイコーマート
+                  %option{:value => "00009"} スリーエフ
+            %tr
+              %th.d-none.d-lg-block お名前
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp お名前
+                %input#name.form-control{:name => "name", :placeholder => "例) 山田 太郎", :required => "", :type => "text", :value => "Masahiro Asaka"}/
+            %tr
+              %th.d-none.d-lg-block フリガナ
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp フリガナ
+                %input#kana.form-control{:name => "kana", :placeholder => "例) ヤマダ タロウ", :required => "", :type => "text", :value => ""}/
+            %tr
+              %th.d-none.d-lg-block 電話番号
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp 電話番号
+                %input#tel.form-control{:name => "tel", :placeholder => "例) 090-1234-5678", :required => "", :type => "tel", :value => ""}/
+            %tr
+              %th.d-none.d-lg-block ご連絡先メールアドレス
+              %td
+                .d-block.d-lg-none.d-xl-none
+                  %label.form_title_sp ご連絡先メールアドレス
+                %input#email.form-control{:name => "email", :placeholder => "例) example@example.com", :required => "", :type => "email", :value => "pedestrem.paradiso@gmail.com"}/
+                コンビニの払込番号が送信されます。
+        .w-100.d-none.d-lg-block
+          .row.justify-content-md-center
+            .col-4.pr-0
+              %a.white.w-100{:href => "/orders/payment_method/118"}
+                %i.fas.fa-angle-left
+                戻る
+            .col-8
+              %button.button.green.w-100.is_complete.d-flex.align-items-center.justify-content-center{:type => "submit"} 注文を確定する
+  .d-block.d-lg-none{:style => "height: 114px"}
+  .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
+    .text-center.total_price_section
+      %span.total_price
+        合計
+        %span#sum_sp 4,900
+        円
+      %span.tax_shipping_fee (税・送料込)
+    %button.justify-content-center.button_footer_sp.w-100{:onclick => "$('#cvs_form').submit()", :type => "button"} 注文を確定する
+  %input#csrf_token{:name => "csrf_token", :type => "hidden", :value => "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DklrIg.HfanOG-DrQfAgh3MX6oH-mH73JI"}/
