@@ -62,6 +62,7 @@ gem 'devise'
 gem 'erb2haml'
 gem 'haml-rails'
 gem 'bootstrap', '~> 4.1.3'
+gem 'payjp'
 
 group :production do
   gem 'unicorn'
