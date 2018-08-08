@@ -23,15 +23,30 @@ $(document).on('turbolinks:load',function(){
         form.find('.payment-errors').text(response.error.message);
         form.find('button').prop('disabled', false);
       }
-      else {
-        $("#cardno").removeAttr("name");
-        $("#securitycode").removeAttr("name");
-        $("#expire_month").removeAttr("name");
-        $("#expire_year").removeAttr("name");
-
-        var token = response.id;
-        // form.append($('<input type="hidden" name="payjpToken" />').val(token));
-        // form.get(0).submit();
+      else{
+        $.ajax({
+          url: "/plans/pay",
+          type: "GET",
+          data: {token: response.id,
+                 number: card.number,
+                 cvc: card.cvc,
+                 exp_month: card.exp_month,
+                 exp_year: card.exp_year},
+          datatype: "json",
+          success: function(data){
+            //成功時の処理
+            console.log('Success!');
+            $("#cardno").removeAttr("name");
+            $("#securitycode").removeAttr("name");
+            $("#expire_month").removeAttr("name");
+            $("#expire_year").removeAttr("name");
+            window.location.href = '/orders/purchase/confirming/118';
+          },
+          error: function(data){
+            //失敗時の処理
+            console.log('Error');
+          }
+        })
       }
     });
   });
