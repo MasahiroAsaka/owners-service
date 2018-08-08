@@ -1,3 +1,4 @@
+%script{:src => "https://js.pay.jp/", :type => "text/javascript"}
 .wrapper_header
   %header.header
     = render "plans/header_header"
@@ -116,8 +117,7 @@
                 %i.fas.fa-angle-left
                 戻る
             .col-8
-              %a{href: "/orders/purchase/confirimng/118"} 決済を確定する
-              / %button.button.green.w-100.is_complete.d-flex.align-items-center.justify-content-center{:onclick => "purchase('9100565616467')", :type => "button"} 決済を完了する
+              %button.button.green.w-100.is_complete.d-flex.align-items-center.justify-content-center{:onclick => "", :type => "submit"} 決済を完了する
   .d-block.d-lg-none{:style => "height: 114px"}
   .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
     .text-center.total_price_section
@@ -126,6 +126,6 @@
         %span#sum_sp 4,900
         円
       %span.tax_shipping_fee (税・送料込)
-    %button.justify-content-center.button_footer_sp.w-100{:onclick => "purchase('9100565616467')", :type => "button"} 決済を完了する
+    %button.justify-content-center.button_footer_sp.w-100{:onclick => "", :type => "button"} 決済を完了する
   %input#tokennumber{:name => "tokennumber", :type => "hidden", :value => "1"}/
 
