@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'payjp'
 end
 
 group :development do
@@ -62,7 +63,6 @@ gem 'devise'
 gem 'erb2haml'
 gem 'haml-rails'
 gem 'bootstrap', '~> 4.1.3'
-gem 'payjp'
 
 group :production do
   gem 'unicorn'
