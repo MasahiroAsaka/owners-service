@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810074836) do
+ActiveRecord::Schema.define(version: 20180810080234) do
+
+  create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text    "content", limit: 65535, null: false
+    t.string  "status",                null: false
+    t.integer "order"
+    t.integer "plan_id"
+    t.index ["plan_id"], name: "index_captured_images_on_plan_id", using: :btree
+  end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "last_name",                            default: "", null: false
