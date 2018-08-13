@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810080234) do
+ActiveRecord::Schema.define(version: 20180811033531) do
 
   create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text    "content", limit: 65535, null: false
-    t.string  "status",                null: false
-    t.integer "order"
-    t.integer "plan_id"
+    t.string   "content",    null: false
+    t.integer  "status",     null: false
+    t.integer  "order",      null: false
+    t.integer  "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_captured_images_on_plan_id", using: :btree
   end
 
@@ -48,7 +50,6 @@ ActiveRecord::Schema.define(version: 20180810080234) do
     t.text     "content_of_service", limit: 65535
     t.text     "benefits",           limit: 65535
     t.integer  "capacity",                         null: false
-    t.datetime "wanted_period",                    null: false
     t.text     "contract_period",    limit: 65535
     t.text     "plan_schedule",      limit: 65535
     t.datetime "created_at",                       null: false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180810080234) do
     t.string   "place",                            null: false
     t.integer  "closing_date_month",               null: false
     t.integer  "closing_date_day",                 null: false
+    t.text     "etc",                limit: 65535
   end
 
 end

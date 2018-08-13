@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "plans#index"
   devise_for :owners
-  resources :plans, only:[:index, :show, :new] do
+  resources :plans, only:[:index, :show, :new, :create] do
     get 'pay', on: :collection
   end
   get '/orders/select_cources/:id', to: 'orders#select_cources'
