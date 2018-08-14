@@ -33,6 +33,7 @@ class PlansController < ApplicationController
       params.require(:plan).permit(
         :title,
         :shop_name,
+        :text,
         :partner_message,
         :capacity,
         :place,
