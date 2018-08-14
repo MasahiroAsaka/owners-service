@@ -65,6 +65,7 @@ gem 'haml-rails'
 gem 'bootstrap', '~> 4.1.3'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'redcarpet'
 
 group :production do
   gem 'unicorn'
