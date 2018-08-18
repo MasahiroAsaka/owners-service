@@ -83,6 +83,10 @@
         .items-area
           .content
             / アイテムリストここから
+            / = markdown(@plans.find(48).contents)
+            / = image_tag @plans.find(67).captured_images.find(26).content
+            / .card-img-top{style: @plans.find(23).plan_detail}
+            / = sanitize @plans.find(25).contents, tags: %w(img h3 p br), attributes: %w(src alt)
             %a.item-link{:href => "/plans/138"}
               %section.items
                 .status

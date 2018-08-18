@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180801082230) do
+ActiveRecord::Schema.define(version: 20180818064155) do
+
+  create_table "captured_image_courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.integer  "order"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_captured_image_courses_on_course_id", using: :btree
+  end
+
+  create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content",    null: false
+    t.integer  "status",     null: false
+    t.integer  "order",      null: false
+    t.integer  "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_captured_images_on_plan_id", using: :btree
+  end
+
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.string   "price"
+    t.text     "desc",       limit: 65535
+    t.string   "image"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "plan_id"
+    t.index ["plan_id"], name: "index_courses_on_plan_id", using: :btree
+  end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "last_name",                            default: "", null: false
@@ -28,23 +58,24 @@ ActiveRecord::Schema.define(version: 20180801082230) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_owners_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "title",              limit: 65535, null: false
-    t.datetime "closing_date",                     null: false
-    t.integer  "registration_fee",                 null: false
-    t.text     "text",               limit: 65535
-    t.text     "content_of_service", limit: 65535
-    t.text     "benefits",           limit: 65535
-    t.integer  "capacity",                         null: false
-    t.datetime "wanted_period",                    null: false
-    t.text     "contract_period",    limit: 65535
-    t.text     "plan_schedule",      limit: 65535
+    t.string   "registration_fee",                 null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "shop_name",                        null: false
+    t.string   "place",                            null: false
+    t.string   "closing_date_month",               null: false
+    t.string   "closing_date_day",                 null: false
+    t.text     "contents",           limit: 65535
+    t.text     "plan_detail",        limit: 65535
+    t.text     "title_image",        limit: 65535
+    t.text     "index_image",        limit: 65535
   end
 
 end

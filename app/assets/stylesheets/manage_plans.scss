@@ -1,0 +1,16 @@
+form.plan_form{
+  li.plan_topic{
+    textarea{
+      height: 100px;
+      width: 70%;
+      vertical-align: middle;
+      border: solid #808000;
+    }
+    input{
+      border: solid #808000;
+    }
+    label{
+      width: 170px;
+    }
+  }
+}
