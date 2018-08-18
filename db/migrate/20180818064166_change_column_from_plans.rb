@@ -1,6 +1,5 @@
 class ChangeColumnFromPlans < ActiveRecord::Migration[5.0]
   def change
-    remove_column :plans, :wanted_period
     remove_column :plans, :closing_date
     remove_column :plans, :text
     remove_column :plans, :content_of_service
