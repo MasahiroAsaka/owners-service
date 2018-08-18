@@ -6,6 +6,7 @@ class ChangeColumnFromPlans < ActiveRecord::Migration[5.0]
     remove_column :plans, :benefits
     remove_column :plans, :capacity
     remove_column :plans, :contract_period
+    remove_column :plans, :etc
     add_column    :plans, :shop_name,           :text,   null: false
     add_column    :plans, :place,               :text,   null: false
     add_column    :plans, :closing_date_month,  :string, null: false
