@@ -6,6 +6,7 @@ class PlansController < ApplicationController
   end
 
   def index
+    @plans = Plan.all
   end
 
   def create
@@ -33,18 +34,11 @@ class PlansController < ApplicationController
       params.require(:plan).permit(
         :title,
         :shop_name,
-        :text,
-        :partner_message,
-        :capacity,
+        :contents,
         :place,
         :closing_date_month,
         :closing_date_day,
         :registration_fee,
-        :content_of_service,
-        :contract_period,
-        :plan_schedule,
-        :benefits,
-        :etc,
         captured_images_attributes: [:content, :status, :order, :plan_id]
       )
     end

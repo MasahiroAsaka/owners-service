@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811033531) do
+ActiveRecord::Schema.define(version: 20180818064155) do
+
+  create_table "captured_image_courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.integer  "order"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_captured_image_courses_on_course_id", using: :btree
+  end
 
   create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content",    null: false
@@ -20,6 +29,17 @@ ActiveRecord::Schema.define(version: 20180811033531) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_captured_images_on_plan_id", using: :btree
+  end
+
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.string   "price"
+    t.text     "desc",       limit: 65535
+    t.string   "image"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "plan_id"
+    t.index ["plan_id"], name: "index_courses_on_plan_id", using: :btree
   end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,21 +65,17 @@ ActiveRecord::Schema.define(version: 20180811033531) do
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "title",              limit: 65535, null: false
-    t.integer  "registration_fee",                 null: false
-    t.text     "text",               limit: 65535
-    t.text     "content_of_service", limit: 65535
-    t.text     "benefits",           limit: 65535
-    t.integer  "capacity",                         null: false
-    t.text     "contract_period",    limit: 65535
-    t.text     "plan_schedule",      limit: 65535
+    t.string   "registration_fee",                 null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "shop_name",                        null: false
-    t.text     "partner_message",    limit: 65535, null: false
     t.string   "place",                            null: false
-    t.integer  "closing_date_month",               null: false
-    t.integer  "closing_date_day",                 null: false
-    t.text     "etc",                limit: 65535
+    t.string   "closing_date_month",               null: false
+    t.string   "closing_date_day",                 null: false
+    t.text     "contents",           limit: 65535
+    t.text     "plan_detail",        limit: 65535
+    t.text     "title_image",        limit: 65535
+    t.text     "index_image",        limit: 65535
   end
 
 end

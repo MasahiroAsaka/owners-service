@@ -7,17 +7,14 @@
       = f.label :shop_name, "店舗名"
       = f.text_field :shop_name
     %li.plan_topic
-      = f.label :partner_message, "メッセージ"
-      = f.text_field :partner_message
-    %li.plan_topic
-      = f.label :capacity, "募集枠"
-      = f.text_field :capacity
-    %li.plan_topic
       = f.label :place, "産地"
       = f.text_field :place
     %li.plan_topic
-      = f.label :text, "テキスト"
-      = f.text_area :text
+      = f.label :contents, "コンテンツ"
+      = f.text_area :contents
+    %li.plan_topic
+      = f.label :plan_detail, "プラン詳細"
+      = f.text_area :plan_detail
     %li.plan_topic
       = f.label :closing_date_month, "締め切り(月)"
       = f.text_field :closing_date_month
@@ -27,21 +24,13 @@
     %li.plan_topic
       = f.label :registration_fee, "登録料"
       = f.text_field :registration_fee
-    %li.plan_topic
-      = f.label :content_of_service, "提供品"
-      = f.text_field :content_of_service
-    %li.plan_topic
-      = f.label :contract_period, "契約期間"
-      = f.text_field :contract_period
-    %li.plan_topic
-      = f.label :plan_schedule, "プランの日程"
-      = f.text_field :plan_schedule
-    %li.plan_topic
-      = f.label :benefits, "特典"
-      = f.text_field :benefits
-    %li.plan_topic
-      = f.label :etc, "備考"
-      = f.text_field :etc
+    %li.plan_topic.image_index
+      = f.fields_for :captured_images do |image|
+        = image.label :captured_images, "インデックス写真"
+        = image.file_field :content
+        = image.hidden_field :order, value: 1
+        = image.hidden_field :status, value: "index"
+        .preview
     %li.plan_topic.image_main
       = f.fields_for :captured_images do |image|
         = image.label :captured_images, "メイン(背景)写真"
@@ -56,6 +45,14 @@
         = image.hidden_field :order, value: 1
         = image.hidden_field :status, value: "sub"
         .preview
-        %button.add_images 追加
+        %button.add_images_sub 追加
+    %li.plan_topic.image_card
+      = f.fields_for :captured_images do |image|
+        = image.label :captured_images, "カード写真 1"
+        = image.file_field :content
+        = image.hidden_field :order, value: 3
+        = image.hidden_field :status, value: "card"
+        .preview
+        %button.add_images_card 追加
   = f.submit "Create"
 = link_to "Sign Out", destroy_owner_session_path, method: :delete
