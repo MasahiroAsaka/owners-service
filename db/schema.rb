@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180818064155) do
+ActiveRecord::Schema.define(version: 20180819062914) do
 
   create_table "captured_image_courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20180818064155) do
     t.string   "title"
     t.string   "price"
     t.text     "desc",       limit: 65535
-    t.string   "image"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "plan_id"
@@ -64,9 +63,7 @@ ActiveRecord::Schema.define(version: 20180818064155) do
   end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "index_image",        limit: 65535
     t.text     "title",              limit: 65535, null: false
-    t.text     "title_image",        limit: 65535
     t.string   "shop_name",                        null: false
     t.string   "place",                            null: false
     t.text     "contents",           limit: 65535
