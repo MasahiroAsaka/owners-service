@@ -64,18 +64,18 @@ ActiveRecord::Schema.define(version: 20180818064155) do
   end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "index_image",        limit: 65535
     t.text     "title",              limit: 65535, null: false
-    t.string   "registration_fee",                 null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.text     "title_image",        limit: 65535
     t.string   "shop_name",                        null: false
     t.string   "place",                            null: false
+    t.text     "contents",           limit: 65535
+    t.string   "registration_fee",                 null: false
     t.string   "closing_date_month",               null: false
     t.string   "closing_date_day",                 null: false
-    t.text     "contents",           limit: 65535
     t.text     "plan_detail",        limit: 65535
-    t.text     "title_image",        limit: 65535
-    t.text     "index_image",        limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
 end
