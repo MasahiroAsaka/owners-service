@@ -1,8 +1,9 @@
 class PlansController < ApplicationController
+before_action  :set_plan, only: [:show]
 
   def new
     @plan = Plan.new
-     @plan.captured_images.build
+    @plan.captured_images.build
   end
 
   def index
@@ -43,4 +44,7 @@ class PlansController < ApplicationController
       )
     end
 
+    def set_plan
+      @plan = Plan.find(params[:id])
+    end
 end

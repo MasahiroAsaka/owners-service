@@ -4,12 +4,14 @@ def plan_urls
   agent = Mechanize.new
   links = []
   i_images = []
+  a_images = []
 
   current_page  = agent.get("https://owner-style.com/")
   elements      = current_page.search('.container .plans_pc .plan_card_medium')
   index_images  = current_page.search('.container .plans_pc .plan_card_medium .card .card-img-top')
+  avatars       = current_page.search('.container .plans_pc .plan_card_medium .card .avatar_72')
 
-  #index_imageのurlの部分を抽出
+  # #index_imageのurlの部分を抽出
   index_images.each do |index_image|
     str       = index_image.attribute('style').to_s
     reg       = /"/.match(str)
@@ -18,19 +20,27 @@ def plan_urls
     i_images  << reg_pre.pre_match
   end
 
+  #avatarのurlの部分を抽出
+  avatars.each do |avatar|
+    reg_avatar        = /\(/.match(avatar.get_attribute('style').to_s)
+    reg_post_avatar   = reg_avatar.post_match
+    reg_pre_avatar    = /\)/.match(reg_post_avatar)
+    avatar_image_url  = reg_pre_avatar.pre_match
+    a_images << avatar_image_url
+  end
+
   elements.first(40).each do |ele|
     links << ele.get_attribute('href') if ele
   end
 
-  links.zip(i_images).each do |link, i_image|
-    create_plans('https://owner-style.com' + link, i_image)
+  links.zip(i_images, a_images).each do |link, i_image, a_image|
+    create_plans('https://owner-style.com' + link, i_image, a_image)
   end
 end
 
-def create_plans(link, i_image)
+def create_plans(link, i_image, a_image)
   agent = Mechanize.new
   page = agent.get(link)
-
   title             = page.search('#cover h1').inner_text if page.search('#cover h1').inner_text
   title_image       = page.at('#cover .cover_img_wrap').get_attribute('style').to_s
   contents          = page.search('.contents img, .contents h3, .contents p') if page.search('.contents img, .contents h3, .contents p')
@@ -44,8 +54,10 @@ def create_plans(link, i_image)
   plan_detail       = page.search('.single .card-body') if page.search('.single .card-body')
   card_title        = page.search('h2.card-title') if page.search('h2.card-title')
   card_price        = page.search('.price.mb-3') if page.search('.price.mb-3')
-  card_desc         = page.search('.border-0 .card-body h3, .plan_detail_list .card .card-body.desc p') if page.search('.border-0 .card-body h3, .plan_detail_list .card .card-body.desc p')
+  card_desc         = page.search('.plan_detail_list .card .card-body.desc')
+  card_desc_summary = page.search('article .sidebar p') if page.search('article .sidebar p')
   card_images       = page.search('.plan_detail_list .card .card-img-top') if page.search('.plan_detail_list .card .card-img-top')
+  map               = page.search('script')[6]
 
   #title_imageのurlの部分を抽出
   str_title       = title_image
@@ -68,6 +80,22 @@ def create_plans(link, i_image)
     card_image_url_2  = reg_pre_card_2.pre_match
   end
 
+  # registration_feeの金額を抽出
+  reg_pre_registration_fee  = /円/.match(registration_fee)
+  fee = reg_pre_registration_fee.pre_match
+
+  # card_priceの金額を抽出
+  reg_pre_card_price_1  = /円/.match(card_price.first.inner_text)
+  price_1 = reg_pre_card_price_1.pre_match
+  if card_title[1].present?
+    reg_pre_card_price_2  = /円/.match(card_price[1].inner_text)
+    price_2 = reg_pre_card_price_2.pre_match
+  end
+
+  # google map位置情報を取得
+  lat = map.text.scan(/lat: (.+),/).first
+  lng = map.text.scan(/lng: (.+)\n/).first
+
   plan = Plan.new(
     title: title,
     shop_name: shop_name,
@@ -76,19 +104,23 @@ def create_plans(link, i_image)
     closing_date_month: month,
     closing_date_day: day,
     registration_fee: registration_fee,
-    plan_detail: plan_detail
+    plan_detail: plan_detail,
+    lat: lat,
+    lng: lng
     )
 
   course_1 = plan.courses.new(
     title: card_title.first.inner_text,
-    price:card_price.first.inner_text,
-    desc: card_desc[0..3],
+    price: price_1,
+    card_desc_summary: card_desc_summary[0],
+    desc: card_desc[0],
     )
   if card_title[1].present?
     course_2 = plan.courses.new(
       title: card_title[1].inner_text,
-      price: card_price[1].inner_text,
-      desc: card_desc[4..7],
+      price: price_2,
+      card_desc_summary: card_desc_summary[1],
+      desc: card_desc[1],
     )
   end
 
@@ -99,6 +131,16 @@ def create_plans(link, i_image)
     plan.captured_images.build(
       content: ind,
       status: 'index',
+      order: 1,
+      plan_id: plan.id
+    )
+  end
+
+  agent.get(a_image).save "app/assets/images/contents/#{num}_avatar.jpg"
+  File.open("app/assets/images/contents/#{num}_avatar.jpg") do |ava|
+    plan.captured_images.build(
+      content: ava,
+      status: 'avatar',
       order: 1,
       plan_id: plan.id
     )

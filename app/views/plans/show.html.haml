@@ -1,17 +1,19 @@
 %body
   #wrapper
     #container
-      .hero-single{:style => "background: -webkit-linear-gradient(rgba(0,0,0,.6),transparent),url(https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/main_7_IMG_1484.jpg);background: linear-gradient(rgba(0,0,0,.6),transparent),url(https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/main_7_IMG_1484.jpg);background-size: cover;"}
+      .hero-single{:style => "background: -webkit-linear-gradient(rgba(0,0,0,.6),transparent),url(https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/main_7_IMG_1484.jpg);background: linear-gradient(rgba(0,0,0,.6),transparent),url(#{@plan.captured_images.where('status="0"').first.content});background-size: cover;"}
         %header.header
           = render "header_header"
           .product-message
-            %h2 ＜堪能コース＞ プチプチ食感と濃厚な甘酸っぱさにファン急増中。南房総から届く「完熟パッションフルーツ」
+            %h2
+              = @plan.title
             %figure.shop-partner
               %img{:alt => "", :height => 110, :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => 110}/
-            %p.shop-name RYO’SFARM
-            .partner-message
-              %p
-                南房総の恵みが溢れる町で、こだわりのパッションフルーツを作っています
+            %p.shop-name
+              = @plan.shop_name
+            / .partner-message
+            /   %p
+            /     南房総の恵みが溢れる町で、こだわりのパッションフルーツを作っています
       .sticky
         = render "sticky"
       %link{:href => "", :rel => "stylesheet", :type => "text/css"}/
@@ -19,279 +21,128 @@
         .layout-bpx
           .left-box
             %dl.brown
-              %dt 定員残り
-              %dd
-                %span 40
+              / %dt 定員残り
+              / %dd
+              /   %span 40
             %dl
               %dt 産地
               %dd
-                %span.nomal 千葉県館山市薗
+                %span.nomal
+                  = @plan.place
             %dl
               %dt 募集締切
               %dd
-                %span> 8
-                月
-                %span> 31
-                日
-          %a.btn-green.ajax{:href => "/orders/select_cources/138"} お申し込み
+                %span>
+                  = "#{@plan.closing_date_month}月"
+                %span>
+                  = "#{@plan.closing_date_day}日"
+          %a.btn-green.ajax{:href => "/orders/select_cources/#{@plan.id}"} お申し込み
         / /layout-bpx
       / /product-data
       #product-content
         %article.content
           %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1517/content_image/w740h420_53443191_main.jpeg", :ssl => "1", :width => "740"}/
-            %h3 千葉・南房総から届く“甘い”パッションフルーツ。ルビー色の完熟果実をお届けします
-            %p
-              パッションフルーツを食べたことはありますか？
-              %br/
-              食べたことがある方は、きっと“酸っぱい”イメージをお持ちではないでしょうか。
-              %br/
-              私たちRYO'S FARMでは、そんなイメージを覆すより甘味の強いパッションフルーツを育てています。
-              %br/
-              %br/
-              もともとパッションフルーツは、南米原産の果物。日本では沖縄県や鹿児島県を中心に栽培されています。ルビー色の実を割ると、ゼリー状の鮮やかな黄色の果肉に包まれた種子がたっぷりと詰まっており、この中身をスプーンですくいそのまま食べます。プチプチとした種の楽しい食感と共に、爽やかな甘酸っぱさ、華やかな香りが特徴です。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1518/content_image/w740h420_34512465_1820822694660845_3536826038346579968_n.jpg", :ssl => "1", :width => "740"}/
-            %h3
-            %p
-              その独特の味わいのほか、注目したいのは栄養価の高さ。皮膚や粘膜の健康維持に欠かせないβカロテンなどアンチエイジング成分が豊富で、美肌効果も期待できるパッションフルーツ。さらに、“女性のビタミン”と呼ばれ、貧血や疲労対策にも効果的な葉酸の含有量は果物の中でもトップクラス！ホルモンバランスを整えるビタミンB6も多く含まれ、女性に嬉しいフルーツとして、近年人気を高めています。
-              %br/
-              %br/
-              そんな魅惑の果実パッションフルーツを、千葉県館山市にある私たちRYO'S FARMでは、年間約2万個を栽培。それも少し変わった方法で、“甘い”パッションフルーツを育てています。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1519/content_image/w740h420_5.jpg", :ssl => "1", :width => "740"}/
-            %h3 新しい農業を切り拓く“情熱の果物”で移住＆起業
-            %p
-              こんにちは！RYO'S FARM園主の梁寛樹（りょう・ひろき）です。2013年にこの地でパッションフルーツの栽培をはじめました。といっても、もともと農業とは無縁の会社員。ここ館山には大好きなサーフィンのため週末に訪れるだけでした。
-              %br/
-              %br/
-              一方で、その頃からメディアを通して日々「日本の農業が危ない」と耳にすることが多くなり、農業への関心はありました。なぜ低迷しているのだろうか？もっと違う方法があるのではないか？なんて、一人で考える日々。また、ゼロから何かを創り出す農業という職種に魅力を感じてもいました。そしてもし、縁もゆかりもない僕のような人間が農業で身を立てることができれば、農業の未来を明るく変えられるのではないか、と考えるようになり、移住を決意したのがすべてのはじまりでした。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1520/content_image/w740h420_2.jpg", :ssl => "1", :width => "740"}/
-            %h3 都心から90分！温暖な気候に恵まれ自然が豊かな千葉県館山市
-            %p
-              RYO'S FARMのある千葉県館山市は、県の南端に広がる南房総半島にあります。都心から車で90分という立地にありながら、一面に広がる美しい海が迎えてくれます。
-              %br/
-              %br/
-              私が農業を始めた大きな理由の1つが、気候に恵まれた南房総の豊かな自然です。この土地ならではの自然や環境を生かし、この地に貢献できるような働き方を模索していた時、観光地として多くの人が南房総を訪れる一方で、現地では高齢化により引退する農家が跡を絶たないという現実を知り、新規就農を決意。
-              %br/
-              %br/
-              「地元の人達と繋がり、南房総を盛り上げたい！」という思いから、日本ではまだあまり馴染みのない「パッションフルーツ」という南国の果実を地域の特産品にすべく農業をはじめることにしたんです。
-              %br/
-              %br/
-              温暖な気候から、かつては花の栽培が盛んだった南房総で、使われなくなった一軒の花農家さんのガラス温室を譲り受け、RYO'S FARMをスタートさせました。RYO'S　FARMは、今では400坪のビニールハウスに約200本、南房総最大のパッションフルーツ農園に成長しました。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1521/content_image/w740h420_P6111427-2+2.jpg", :ssl => "1", :width => "740"}/
-            %h3 パッションフルーツはこうして“甘く”なる。２万個の果実一つひとつに●●をつける！？
-            %p
-              RYO'S FARMのこだわりは土づくりから始まります。地下50mから汲みあげる清澄な飲料用の井戸水を使って丁寧につくる土は、美味しいパッションフルーツ作りには欠かせません。
-              %br/
-              %br/
-              そして苗木を植え、適宜剪定をしながら育て、花が咲いたら大切な受粉作業の時。パッションフルーツの花は一日花。受粉できる期間はたったの一日だけなんです。これを逃すと実がならないため、毎シーズン神経を研ぎ澄ませ、2万個の果実全てに手作業で受粉を行います。
-              %br/
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1522/content_image/w740h420_7.jpg", :ssl => "1", :width => "740"}/
-            %h3
-            %p
-              さらに私たちの”甘さ”の秘密はこれから。
-              %br/
-              通常の栽培方法だと、未熟な段階で枝から落ちてしまい、採れたての果実は酸味が強く、甘味が増すまで追熟する必要があります。私たちは、完熟するまで樹から落果しないように、約2万個の果実一つひとつを洗濯バサミで止めていきます。そうやって少しでも長く樹上で完熟させることで、栄養分を吸収し、より大きく、より甘くすることに成功しました。
-              %br/
-              %br/
-              基本的に農薬は使わず、ゆっくりと時間をかけ完熟させて収穫するこの「樹上完熟栽培」によって、大粒で甘みがしっかりとある極上のパッションフルーツが生まれます。
-              %br/
-              %br/
-              パッションフルーツの果実以外にも、ぜひ味わっていただきたいのがこちら！
-              %br/
-              私たちの甘いパッションフルーツでつくる「リリコイバター」です。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1523/content_image/w740h420_main_7_IMG_1484.jpg", :ssl => "1", :width => "740"}/
-            %h3 朝食やデザートに。農家が作った希少な国産「リリコイバター」
-            %p
-              「リリコイ」とはハワイ語で「パッションフルーツ」を意味する言葉で、その名の通りパッションフルーツのスプレッドです。ハワイのお土産として知られていますが、日本での認知度はまだあまり高くはありません。現地では、朝食に欠かせないお供として人気があり、パンに塗ったり、ヨーグルトにかけたりして親しまれています。
-              %br/
-              %br/
-              私たちのリリコイバターの最大の特徴は、種までパッションフルーツをまるごと使うところ。農家ならではの加工品という発想から誕生したリリコイバターです。
-              %br/
-              %br/
-              パッションフルーツを作り始めた当初は、農家なら「生の実」で勝負しようと思い、加工品は生産していませんでしたが、ファーマーズマーケットでのハワイ帰りのお客さんとの会話がきっかけでリリコイバターを作り始めました。
-              %br/
-              %br/
-              パッションフルーツ、バター、卵、砂糖のみを使い無添加・無着色でつくるリリコイバターは、まるで果実を食べているようなフレッシュな甘酸っぱさが他にはない美味しさです。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1524/content_image/w740h420_9.jpg", :ssl => "1", :width => "740"}/
-            %h3
-            %p
-              おすすめの食べ方は、ヨーグルトと一緒に。酸味のあるヨーグルトにリリコイバターの酸味と甘味がプラスされ絶妙にマッチ。かけるだけの簡単、栄養満点の最高の朝食になりますよ。
-              %br/
-              %br/
-              パッションフルーツの特徴を存分にいかした爽やかで濃厚な香りのリリコイバターは、一度食べたらやみつきになること間違いなし。プチッとした食感が楽しい、千葉県生まれの種入りリリコイバターは、新しいパンのお供としても一押しです。
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1525/content_image/w740h420_IMG_9897.jpg", :ssl => "1", :width => "740"}/
-            %h3 南房総から届く「完熟パッションフルーツ」オーナーを募集します！
-            %p
-              手間暇かけた「樹上完熟」だからこその、ほかではなかなか出合えない「甘さ」「香り」が特徴のRYO'S FARMのパッションフルーツ。
-              %br/
-              %br/
-              今回はそんな絶品パッションフルーツの大玉サイズを、農家が作るリリコイバターをセットにしてお届け。こちらは、毎日食べたい方やスイーツ作りに使いたい方向けに内容量を増やしております。
-              %br/
-              %br/
-              朝食やおやつを、いつもよりちょっとリッチに。ぜひお試しください。
-              %br/
-              %br/
-              ＝＝＝　プラン内容　＝＝＝
-              %br/
-              %br/
-              ▼提供内容
-              %br/
-              %br/
-              商品：
-              %br/
-              ・大玉パッションフルーツ11個(90-100g/個)
-              %br/
-              ・リリコイバター1個(110g)
-              %br/
-              ※2箱1セットでお届けします。
-              %br/
-              %br/
-              時期：
-              %br/
-              2018年9月上旬〜下旬
-              %br/
-              %br/
-              ※収穫サイズにより数量が変更する場合がございます。
-              %br/
-              %br/
-              ▼契約期間
-              %br/
-              登録後から、最終商品のお届け月まで
-              %br/
-              %br/
-              ▼登録特典
-              %br/
-              園地での収穫体験
-              %br/
-              ※日時はご希望に添えない場合がございます
-              %br/
-              %br/
-              ▼募集定員
-              %br/
-              50人
-              %br/
-              %br/
-              ▼募集期間
-              %br/
-              2018年6月15日〜2018年8月31日まで
-              %br/
-              %br/
-              ▼オーナー登録費
-              %br/
-              6,500円 （消費税・送料1回含む）
-              %br/
-              %br/
-              ※発送場所が沖縄または離島となる場合は、別途配送料がかかります。
-              %br/
-              %br/
-              ＝＝＝＝＝＝＝＝＝
-          %section
-            %figure
-              %img{:alt => "", :height => "420", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/ProductContent/1569/content_image/w740h420_RYOSFARM2.jpeg", :ssl => "1", :width => "740"}/
-            %h3 南房総で生まれる南国の香りと果実をオーナーとして味わってみませんか？
-            %p
+            = sanitize @plan.contents, tags: %w(img h3 p br), attributes: %w(src alt)
         .right-column
-          .price-area.paper
-            %h2{:style => "margin-bottom: 0px;"} オーナー登録費
-            %p{:style => "color: #2d1d09;text-align: center;"} （消費税・送料込）
-            %p.price{:style => "margin-bottom: 10px;"}
-              ¥
-              %span 6,500
-            %p.detail
-              ▼提供内容
-              %br/
-              %br/
-              商品：
-              %br/
-              ・大玉パッションフルーツ11個(90-100g/個)
-              %br/
-              ・リリコイバター1個(110g)
-              %br/
-              ※2箱1セットでお届けします。
-              %br/
-              %br/
-              時期：
-              %br/
-              2018年9月上旬〜下旬
-              %br/
-              %br/
-              ※収穫サイズにより数量が変更する場合がございます。
-              %br/
-              %br/
-              ▼契約期間
-              %br/
-              登録後から、最終商品のお届け月まで
-              %br/
-              %br/
-              ▼登録特典
-              %br/
-              園地での収穫体験
-              %br/
-              ※日時はご希望に添えない場合がございます
-              %br/
-              %br/
-              ▼募集定員
-              %br/
-              50人
-              %br/
-              %br/
-              ▼募集期間
-              %br/
-              2018年6月15日〜2018年8月31日まで
-              %br/
-              %br/
-              ▼オーナー登録費
-              %br/
-              6,500円 （消費税・送料1回含む）
-              %br/
-              %br/
-              ※発送場所が沖縄または離島となる場合は、別途配送料がかかります。
-          .schedule-area.paper
-            %h2 プランスケジュール
-            商品：
-            %br/
-            ・大玉パッションフルーツ11個
-            %br/
-            (90-100g/個)
-            %br/
-            ・リリコイバター1個(110g)
-            %br/
-            ※2箱1セットでお届けします。
-            %br/
-            %br/
-            時期：
-            %br/
-            2018年9月上旬〜下旬
-            %br/
-            %br/
-            ※収穫サイズにより数量が変更する
-            %br/
-            場合がございます。
-          .blog-area.paper
-            %h2 コミュニケーションページ
-            %dl
-              %dt 2018/07/12
-              %dd
-                %i.sprite-2x.icon-pen-b
-                %a{:href => "/articles/576"}
-                  この暑さで収穫前倒しになりそうです！
+          - @plan.courses.each do |course|
+            .plan_summaly_list.mb-5
+              .card.border-0
+                .card-img-top{:style => "\n\nbackground-image: url(#{course.captured_image_courses.first.content});\n\n"}
+                  .header
+                    %h5.card-title
+                      = course.title
+                    .card-text
+                      = "#{course.price} (税・送料込み)"
+                .card-body
+                  = sanitize course.card_desc_summary, tags: %w(p br)
+                  .text-center.mt-2
+                    %span.button.d-block{:onclick => "location.href='#course_list'"} コース詳細
+
+          / .right-column
+          / .price-area.paper
+          /   %h2{:style => "margin-bottom: 0px;"} オーナー登録費
+          /   %p{:style => "color: #2d1d09;text-align: center;"} （消費税・送料込）
+          /   %p.price{:style => "margin-bottom: 10px;"}
+          /     ¥
+          /     %span 6,500
+          /   %p.detail
+          /     ▼提供内容
+          /     %br/
+          /     %br/
+          /     商品：
+          /     %br/
+          /     ・大玉パッションフルーツ11個(90-100g/個)
+          /     %br/
+          /     ・リリコイバター1個(110g)
+          /     %br/
+          /     ※2箱1セットでお届けします。
+          /     %br/
+          /     %br/
+          /     時期：
+          /     %br/
+          /     2018年9月上旬〜下旬
+          /     %br/
+          /     %br/
+          /     ※収穫サイズにより数量が変更する場合がございます。
+          /     %br/
+          /     %br/
+          /     ▼契約期間
+          /     %br/
+          /     登録後から、最終商品のお届け月まで
+          /     %br/
+          /     %br/
+          /     ▼登録特典
+          /     %br/
+          /     園地での収穫体験
+          /     %br/
+          /     ※日時はご希望に添えない場合がございます
+          /     %br/
+          /     %br/
+          /     ▼募集定員
+          /     %br/
+          /     50人
+          /     %br/
+          /     %br/
+          /     ▼募集期間
+          /     %br/
+          /     2018年6月15日〜2018年8月31日まで
+          /     %br/
+          /     %br/
+          /     ▼オーナー登録費
+          /     %br/
+          /     6,500円 （消費税・送料1回含む）
+          /     %br/
+          /     %br/
+          /     ※発送場所が沖縄または離島となる場合は、別途配送料がかかります。
+          / .schedule-area.paper
+          /   %h2 プランスケジュール
+          /   商品：
+          /   %br/
+          /   ・大玉パッションフルーツ11個
+          /   %br/
+          /   (90-100g/個)
+          /   %br/
+          /   ・リリコイバター1個(110g)
+          /   %br/
+          /   ※2箱1セットでお届けします。
+          /   %br/
+          /   %br/
+          /   時期：
+          /   %br/
+          /   2018年9月上旬〜下旬
+          /   %br/
+          /   %br/
+          /   ※収穫サイズにより数量が変更する
+          /   %br/
+          /   場合がございます。
+          / .blog-area.paper
+          /   %h2 コミュニケーションページ
+          /   %dl
+          /     %dt 2018/07/12
+          /     %dd
+          /       %i.sprite-2x.icon-pen-b
+          /       %a{:href => "/articles/576"}
+          /         この暑さで収穫前倒しになりそうです！
           %p.law
             %a{:href => "/products/law/10"} 特定商取引に関する表記
           .sns-area
@@ -302,22 +153,49 @@
                 %a.twitter-share-button{"data-count" => "vertical", "data-lang" => "ja", "data-url" => "https://owner-style.com/products/138", :href => "https://twitter.com/share"} ツイート
                 :javascript
                   // <![CDATA[
-                                      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async = true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-                                      // ]]>
+                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async = true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                  // ]]>
               %li.hatena{:style => "margin-top: 20px;display: block;"}
                 %a.hatena-bookmark-button{"data-hatena-bookmark-lang" => "ja", "data-hatena-bookmark-layout" => "vertical-balloon", :href => "http://b.hatena.ne.jp/entry/https://owner-style.com/products/138", :title => "このエントリーをはてなブックマークに追加"}
                   %img{:alt => "このエントリーをはてなブックマークに追加", :height => "20", :src => "https://b.st-hatena.com/images/entry-button/button-only@2x.png", :style => "border: none;", :width => "20"}/
                 %script{:async => "async", :charset => "utf-8", :src => "https://b.st-hatena.com/js/bookmark_button.js", :type => "text/javascript"}
           .order
             %a.btn-green.ajax{href: "orders/select_cources/138"} お申し込み
+
+      %section#course_list.plan_detail_list
+        .container.pt-5
+          - if @plan.courses.length ==1
+            %h1.text-center プラン詳細
+          - else
+            %h1.text-center コース一覧
+          .row.d-flex.justify-content-center
+            - @plan.courses.each do |course|
+              .col-4.mb-4
+                .card.border-0
+                  .card-img-top{:style => "background-image: url(#{course.captured_image_courses.first.content});"}
+                  .header
+                    %h2.card-title
+                      = course.title
+                    .price.mb-3
+                      = course.price
+                      %small （消費税・送料込み）
+                    %a.text-center{:href => "/orders/select_course/170"} このコースでオーナーになる
+                  .card-body.desc
+                    = sanitize course.desc, tags: %w(h3 p br)
+          .single.card
+            %h5.card-header その他プランの説明
+            = sanitize @plan.plan_detail, tags: %w(div br a), attributes: %w(class href)
+
+    .section-map
+      %h4.text-center \このあたりで作っています！/
       #map-space{:style => "width:100%;height:400px;"}
         :javascript
           var map;
           function initMap() {
-            var latlng = new google.maps.LatLng(35.0041495, 139.9190794);
+            var latlng = new google.maps.LatLng(#{@plan.lat}, #{@plan.lng});
             map = new google.maps.Map(document.getElementById('map-space'), {
               center: latlng,
-              zoom: 13,
+              zoom: 7,
               scrollwheel: false,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             });

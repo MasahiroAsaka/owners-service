@@ -87,29 +87,30 @@
             / = image_tag @plans.find(67).captured_images.find(26).content
             / .card-img-top{style: @plans.find(23).plan_detail}
             / = sanitize @plans.find(25).contents, tags: %w(img h3 p br), attributes: %w(src alt)
-            %a.item-link{:href => "/plans/138"}
-              %section.items
-                .status
-                  %p
-                    残りあと
-                    %span 40
-                %figure.item-image
-                  %img{:alt => "", :height => "223", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/w340h223_main_7_IMG_1484.jpg", :ssl => "1", :width => "340"}/
-                %h2 ＜堪能コース＞ プチプチ食感と濃厚な甘酸っぱさにファン急増中。南房総から届く「完熟パッションフルーツ」
-                .info
-                  %p.place
-                    %i.sprite-2x.icon-pin>
-                    千葉県館山市薗
-                  %p.price
-                    %i.sprite-2x.icon-bag>
-                    ¥6,500
-                .owner-info-hover{:style => "display: none; opacity: 1;"}
-                  %figure.shop-partner
-                    %img{:alt => "", :height => "110", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => "110"}/
-                  %p.shop-name RYO’SFARM
-                  .partner-message
-                    %p
-                      南房総の恵みが溢れる町で、こだわりのパッションフルーツを作っています
+            = render partial: "item", collection: @plans
+            / %a.item-link{:href => "/plans/138"}
+            /   %section.items
+            /     .status
+            /       %p
+            /         残りあと
+            /         %span 40
+            /     %figure.item-image
+            /       %img{:alt => "", :height => "223", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Product/138/main_image/w340h223_main_7_IMG_1484.jpg", :ssl => "1", :width => "340"}/
+            /     %h2 ＜堪能コース＞ プチプチ食感と濃厚な甘酸っぱさにファン急増中。南房総から届く「完熟パッションフルーツ」
+            /     .info
+            /       %p.place
+            /         %i.sprite-2x.icon-pin>
+            /         千葉県館山市薗
+            /       %p.price
+            /         %i.sprite-2x.icon-bag>
+            /         ¥6,500
+            /     .owner-info-hover{:style => "display: none; opacity: 1;"}
+            /       %figure.shop-partner
+            /         %img{:alt => "", :height => "110", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => "110"}/
+            /       %p.shop-name RYO’SFARM
+            /       .partner-message
+            /         %p
+            /           南房総の恵みが溢れる町で、こだわりのパッションフルーツを作っています
           / アイテムリストここまで
           .more{:style => "opacity: 0;"}
             %a{:href => "/homes/ajax_list/page:2"}
