@@ -54,7 +54,9 @@ def create_plans(link, i_image, a_image)
   plan_detail       = page.search('.single .card-body') if page.search('.single .card-body')
   card_title        = page.search('h2.card-title') if page.search('h2.card-title')
   card_price        = page.search('.price.mb-3') if page.search('.price.mb-3')
-  card_desc         = page.search('.plan_detail_list .card .card-body.desc')
+  count_cards       = page.search('.plan_detail_list .card.border-0').count
+  count_desc        = page.search('.card .card-body.desc').count
+  card_desc         = page.search('.card .card-body.desc')
   card_desc_summary = page.search('article .sidebar p') if page.search('article .sidebar p')
   card_images       = page.search('.plan_detail_list .card .card-img-top') if page.search('.plan_detail_list .card .card-img-top')
   map               = page.search('script')[6]
@@ -79,6 +81,20 @@ def create_plans(link, i_image, a_image)
     reg_pre_card_2    = /\)/.match(reg_post_card_2)
     card_image_url_2  = reg_pre_card_2.pre_match
   end
+  if card_title[2].present?
+    str_card_3        = card_images[2].get_attribute('style').to_s
+    reg_card          = /\(/.match(str_card_3)
+    reg_post_card_3   = reg_card.post_match
+    reg_pre_card_3    = /\)/.match(reg_post_card_3)
+    card_image_url_3  = reg_pre_card_3.pre_match
+  end
+  if card_title[3].present?
+    str_card_4        = card_images[3].get_attribute('style').to_s
+    reg_card          = /\(/.match(str_card_4)
+    reg_post_card_4   = reg_card.post_match
+    reg_pre_card_4    = /\)/.match(reg_post_card_4)
+    card_image_url_4  = reg_pre_card_4.pre_match
+  end
 
   # registration_feeの金額を抽出
   reg_pre_registration_fee  = /円/.match(registration_fee)
@@ -90,6 +106,14 @@ def create_plans(link, i_image, a_image)
   if card_title[1].present?
     reg_pre_card_price_2  = /円/.match(card_price[1].inner_text)
     price_2 = reg_pre_card_price_2.pre_match
+  end
+  if card_title[2].present?
+    reg_pre_card_price_3  = /円/.match(card_price[2].inner_text)
+    price_3 = reg_pre_card_price_3.pre_match
+  end
+  if card_title[3].present?
+    reg_pre_card_price_4  = /円/.match(card_price[3].inner_text)
+    price_4 = reg_pre_card_price_4.pre_match
   end
 
   # google map位置情報を取得
@@ -103,25 +127,143 @@ def create_plans(link, i_image, a_image)
     place: place,
     closing_date_month: month,
     closing_date_day: day,
-    registration_fee: registration_fee,
+    registration_fee: fee,
     plan_detail: plan_detail,
-    lat: lat,
-    lng: lng
+    lat: lat[0],
+    lng: lng[0]
     )
 
   course_1 = plan.courses.new(
     title: card_title.first.inner_text,
     price: price_1,
-    card_desc_summary: card_desc_summary[0],
-    desc: card_desc[0],
+    card_desc_summary: card_desc_summary[0]
     )
   if card_title[1].present?
     course_2 = plan.courses.new(
       title: card_title[1].inner_text,
       price: price_2,
-      card_desc_summary: card_desc_summary[1],
-      desc: card_desc[1],
+      card_desc_summary: card_desc_summary[1]
     )
+  end
+  if card_title[2].present?
+    course_3 = plan.courses.new(
+      title: card_title[2].inner_text,
+      price: price_3,
+      card_desc_summary: card_desc_summary[2]
+    )
+  end
+  if card_title[3].present?
+    course_4 = plan.courses.new(
+      title: card_title[3].inner_text,
+      price: price_4,
+      card_desc_summary: card_desc_summary[3]
+    )
+  end
+
+  divide_num = count_desc/count_cards
+  # cardが1枚の時、descを割った数が1だったら、2だったら
+  if count_cards == 1
+    if divide_num == 1
+      course_1.course_descriptions.new(
+        content: card_desc[0],
+        course_id: course_1.id
+      )
+    elsif divide_num == 2
+      course_1.course_descriptions.new(
+        content: card_desc[0..1],
+        course_id: course_1.id
+      )
+    end
+  end
+  # cardが2枚の時、descを割った数が1だったら、2だったら
+  if count_cards == 2
+    if divide_num == 1
+      course_1.course_descriptions.new(
+        content: card_desc[0],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[1],
+        course_id: course_2.id
+      )
+    elsif divide_num == 2
+      course_1.course_descriptions.new(
+        content: card_desc[0..1],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[2..3],
+        course_id: course_2.id
+      )
+    end
+  end
+  # cardが3枚の時、descを割った数が1だったら、2だったら
+  if count_cards == 3
+    if divide_num == 1
+      course_1.course_descriptions.new(
+        content: card_desc[0],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[1],
+        course_id: course_2.id
+      )
+      course_3.course_descriptions.new(
+        content: card_desc[2],
+        course_id: course_3.id
+      )
+    elsif divide_num == 2
+      course_1.course_descriptions.new(
+        content: card_desc[0..1],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[2..3],
+        course_id: course_2.id
+      )
+      course_3.course_descriptions.new(
+        content: card_desc[4..5],
+        course_id: course_3.id
+      )
+    end
+  end
+  # cardが4枚の時、descを割った数が1だったら、2だったら...
+  if count_cards == 4
+    if divide_num == 1
+      course_1.course_descriptions.new(
+        content: card_desc[0],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[1],
+        course_id: course_2.id
+      )
+      course_3.course_descriptions.new(
+        content: card_desc[2],
+        course_id: course_3.id
+      )
+      course_4.course_descriptions.new(
+        content: card_desc[3],
+        course_id: course_4.id
+      )
+    elsif divide_num == 2
+      course_1.course_descriptions.new(
+        content: card_desc[0..1],
+        course_id: course_1.id
+      )
+      course_2.course_descriptions.new(
+        content: card_desc[2..3],
+        course_id: course_2.id
+      )
+      course_3.course_descriptions.new(
+        content: card_desc[4..5],
+        course_id: course_3.id
+      )
+      course_4.course_descriptions.new(
+        content: card_desc[6..7],
+        course_id: course_4.id
+      )
+    end
   end
 
   link.slice!(0..28)
@@ -187,6 +329,29 @@ def create_plans(link, i_image, a_image)
       )
     end
   end
+
+  if card_image_url_3.present?
+    agent.get(card_image_url_3).save "app/assets/images/contents/#{num}_card_3.jpg"
+    File.open("app/assets/images/contents/#{num}_card_3.jpg") do |card_3|
+      course_3.captured_image_courses.build(
+        content: card_3,
+        order: 3,
+        course_id: course_3.id
+      )
+    end
+  end
+
+  if card_image_url_4.present?
+    agent.get(card_image_url_4).save "app/assets/images/contents/#{num}_card_4.jpg"
+    File.open("app/assets/images/contents/#{num}_card_4.jpg") do |card_4|
+      course_4.captured_image_courses.build(
+        content: card_4,
+        order: 4,
+        course_id: course_4.id
+      )
+    end
+  end
+
   plan.save!
 end
 

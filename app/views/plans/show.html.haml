@@ -8,7 +8,7 @@
             %h2
               = @plan.title
             %figure.shop-partner
-              %img{:alt => "", :height => 110, :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => 110}/
+              %img{:alt => "", :height => 110, :s3 => "1", :src => "#{@plan.captured_images.where('status="4"').first.content}", :ssl => "1", :width => 110}/
             %p.shop-name
               = @plan.shop_name
             / .partner-message
@@ -20,10 +20,10 @@
       #product-data
         .layout-bpx
           .left-box
-            %dl.brown
-              / %dt 定員残り
-              / %dd
-              /   %span 40
+            / %dl.brown
+            /   %dt 定員残り
+            /   %dd
+            /     %span 40
             %dl
               %dt 産地
               %dd
@@ -52,7 +52,7 @@
                     %h5.card-title
                       = course.title
                     .card-text
-                      = "#{course.price} (税・送料込み)"
+                      = "#{course.price}円 (税・送料込み)"
                 .card-body
                   = sanitize course.card_desc_summary, tags: %w(p br)
                   .text-center.mt-2
@@ -143,8 +143,8 @@
           /       %i.sprite-2x.icon-pen-b
           /       %a{:href => "/articles/576"}
           /         この暑さで収穫前倒しになりそうです！
-          %p.law
-            %a{:href => "/products/law/10"} 特定商取引に関する表記
+          / %p.law
+          /   %a{:href => "/products/law/10"} 特定商取引に関する表記
           .sns-area
             %ul
               %li.fb-box
@@ -153,7 +153,7 @@
                 %a.twitter-share-button{"data-count" => "vertical", "data-lang" => "ja", "data-url" => "https://owner-style.com/products/138", :href => "https://twitter.com/share"} ツイート
                 :javascript
                   // <![CDATA[
-                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async = true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.async = true;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
                   // ]]>
               %li.hatena{:style => "margin-top: 20px;display: block;"}
                 %a.hatena-bookmark-button{"data-hatena-bookmark-lang" => "ja", "data-hatena-bookmark-layout" => "vertical-balloon", :href => "http://b.hatena.ne.jp/entry/https://owner-style.com/products/138", :title => "このエントリーをはてなブックマークに追加"}
@@ -177,11 +177,11 @@
                     %h2.card-title
                       = course.title
                     .price.mb-3
-                      = course.price
+                      = "#{course.price}円"
                       %small （消費税・送料込み）
                     %a.text-center{:href => "/orders/select_course/170"} このコースでオーナーになる
-                  .card-body.desc
-                    = sanitize course.desc, tags: %w(h3 p br)
+                  - course.course_descriptions.each do |desc|
+                    = sanitize desc.content, tags: %w(div h3 p br), attributes: %w(class)
           .single.card
             %h5.card-header その他プランの説明
             = sanitize @plan.plan_detail, tags: %w(div br a), attributes: %w(class href)

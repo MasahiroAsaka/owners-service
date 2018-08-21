@@ -87,7 +87,8 @@
             / = image_tag @plans.find(67).captured_images.find(26).content
             / .card-img-top{style: @plans.find(23).plan_detail}
             / = sanitize @plans.find(25).contents, tags: %w(img h3 p br), attributes: %w(src alt)
-            = render partial: "item", collection: @plans
+            / = render partial: "item", collection: @plans
+            = render partial: "item", locals: { plans: @plans}
             / %a.item-link{:href => "/plans/138"}
             /   %section.items
             /     .status

@@ -1,4 +1,4 @@
-- @plans.each do |plan|
+- plans.each do |plan|
   %a.item-link{:href => "/plans/#{plan.id}"}
     %section.items
       / .status
@@ -16,7 +16,7 @@
           = plan.place
         %p.price
           %i.sprite-2x.icon-bag>
-          = plan.registration_fee
+          = "#{plan.registration_fee}円"
       .owner-info-hover{:style => "display: none; opacity: 1;"}
         %figure.shop-partner
           %img{:alt => "", :height => "110", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => "110"}/
