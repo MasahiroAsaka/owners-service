@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180819062914) do
+ActiveRecord::Schema.define(version: 20180821030822) do
 
   create_table "captured_image_courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -31,13 +31,29 @@ ActiveRecord::Schema.define(version: 20180819062914) do
     t.index ["plan_id"], name: "index_captured_images_on_plan_id", using: :btree
   end
 
+  create_table "course_descriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535, null: false
+    t.integer  "course_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["course_id"], name: "index_course_descriptions_on_course_id", using: :btree
+  end
+
+  create_table "course_descrptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "content",    limit: 65535, null: false
+    t.integer  "course_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["course_id"], name: "index_course_descrptions_on_course_id", using: :btree
+  end
+
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "price"
-    t.text     "desc",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "plan_id"
+    t.text     "card_desc_summary", limit: 65535
     t.index ["plan_id"], name: "index_courses_on_plan_id", using: :btree
   end
 
@@ -71,6 +87,8 @@ ActiveRecord::Schema.define(version: 20180819062914) do
     t.string   "closing_date_month",               null: false
     t.string   "closing_date_day",                 null: false
     t.text     "plan_detail",        limit: 65535
+    t.string   "lat"
+    t.string   "lng"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end

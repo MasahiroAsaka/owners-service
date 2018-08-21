@@ -174,15 +174,6 @@ h3 {
     font-size: 0.9375rem;
 }
 
-#product-content .right-column, #article-content .right-column {
-    width: 300px;
-    float: right;
-}
-
-#product-content .right-column .blog-area dl dd i, #article-content .right-column .blog-area dl dd i {
-    margin-right: 4px;
-}
-
 .sprite-2x.icon-pen-b {
     display: inline-block;
     background-image: image-url(sprite-2x);
@@ -214,6 +205,147 @@ h3 {
     -ms-transform: translateX(-6px);
     transform: translateX(-6px);
     z-index: 10;
+}
+
+//ここからsidebar
+.mb-5 {
+    margin-bottom: 3rem!important;
+}
+
+.justify-content-around {
+    justify-content: space-around!important;
+}
+
+//sidebar>right-column
+.right-column .title {
+    margin: 16px auto 20px;
+    font-weight: 700;
+}
+
+.right-column{
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Arial, メイリオ, Meiryo, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: auto;
+        text-size-adjust: 100%;
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Arial, メイリオ, Meiryo, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: auto;
+        text-size-adjust: 100%;
+        font-size: 1rem;
+        line-height: 1.38;
+        font-weight: 700;
+        letter-spacing: 0.2rem;
+    }
+
+     p {
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", Arial, メイリオ, Meiryo, sans-serif;
+        text-rendering: auto;
+        text-size-adjust: 100%;
+    }
+
+}
+
+.plan_summaly_list .card {
+    box-shadow: 0 2px 7px 0 rgba(0,0,0,.2);
+
+    .header {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 10px 10px;
+        background-color: rgba(0,0,0,.3);
+        color: #fff;
+
+        .card-title {
+            font-weight: 700;
+            font-size: 18px;
+            font-size: 1.125rem;
+        }
+
+        .card-text {
+            font-size: 12px;
+            font-size: .75rem;
+        }
+
+        .card-text:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .button {
+        display: block;
+        padding: .4rem 1rem;
+        font-size: 14px;
+        font-size: .875rem;
+        border-radius: 4px;
+        background-color: #f1eee8;
+        color: #1b1b1b;
+        cursor: pointer;
+    }
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-img-top {
+    position: relative;
+    width: 290px;
+    height: 192px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: #efefef;
+}
+
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+
+.card-title {
+    margin-bottom: .75rem;
+}
+
+
+.border-0 {
+    border: 0!important;
+}
+
+.mt-2, .my-2 {
+    margin-top: .5rem!important;
+}
+//sidebarここまで
+
+//ここからright-column
+#product-content .right-column, #article-content .right-column {
+    width: 300px;
+    float: right;
+}
+
+#product-content .right-column .blog-area dl dd i, #article-content .right-column .blog-area dl dd i {
+    margin-right: 4px;
 }
 
 #product-content .right-column .blog-area dl dd a, #article-content .right-column .blog-area dl dd a {
@@ -274,25 +406,6 @@ h3 {
     vertical-align: top;
 }
 
-div.fb-like {
-    margin-top: 20px!important;
-}
-
-.fb_iframe_widget {
-    display: inline-block;
-    position: relative;
-}
-
-.fb_iframe_widget span {
-    display: inline-block;
-    position: relative;
-    text-align: justify;
-}
-
-iframe.twitter-share-button {
-    margin-top: 40px!important;
-}
-
 #product-content .right-column .paper .detail, #article-content .right-column .paper .detail {
     text-align: left;
 }
@@ -314,4 +427,109 @@ iframe.twitter-share-button {
     font-weight: bold;
     font-size: 24px;
     font-size: 1.5rem;
+}
+//right-columnここまで
+
+div.fb-like {
+    margin-top: 20px!important;
+}
+
+.fb_iframe_widget {
+    display: inline-block;
+    position: relative;
+}
+
+.fb_iframe_widget span {
+    display: inline-block;
+    position: relative;
+    text-align: justify;
+}
+
+iframe.twitter-share-button {
+    margin-top: 40px!important;
+}
+
+//ここからplan_detail
+.plan_detail_list {
+    background-color: #f8f6f3;
+}
+
+.plan_detail_list{
+    h1 {
+        font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Hiragino Kaku Gothic ProN,"ヒラギノ角ゴ ProN W3",Arial,"メイリオ",Meiryo,sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: auto;
+        text-size-adjust: 100%;
+        font-size: 20px;
+        font-size: 1.25rem;
+        color: "#3b2d1c";
+        margin-bottom: 41px;
+    }
+
+    .card {
+        box-shadow: 0 2px 7px 0 rgba(0,0,0,.2);
+
+        .header {
+            text-align: center;
+            padding: .8rem;
+
+            .card-title {
+                font-size: 19px;
+                font-size: 1.1875rem;
+                font-weight: 700;
+            }
+
+            .price {
+                font-size: 18px;
+                font-size: 1.125rem;
+
+                small {
+                    font-size: 10px;
+                    font-size: .625rem;
+                }
+
+            }
+
+            a {
+                display: block;
+                background-color: #427833;
+                color: #fff;
+                font-weight: 700;
+                border-radius: 4px;
+                padding: .6rem .4rem;
+                text-decoration: none;
+            }
+
+        }
+
+        .card-body {
+            border-top: solid 1px #d7d1c3;
+
+            h3 {
+                font-weight: 700;
+                font-size: 14px;
+                font-size: .875rem;
+            }
+
+        }
+
+    }
+
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+//plan_detailここまで
+
+.section-map {
+    padding-top: 100px;
+    width: 100%;
+    background-color: #f8f6f3;
+}
+
+.section-map h4 {
+    font-size: 13px;
+    font-size: .8125rem;
+    margin-bottom: 30px;
 }
