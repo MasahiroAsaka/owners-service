@@ -6,7 +6,7 @@
       /     残りあと
       /     %span 40
       %figure.item-image
-        = image_tag plan.captured_images.where("status='3'").first.content
+        = image_tag plan.captured_images.where("status='3'").first.content, style: "height: 340px; width: 340px;"
         / %img{:alt => "", :height => "223", :s3 => "1", :src => plan.captured_images.where(status = "3").first.content, :ssl => "1", :width => "340"}/
       %h2
         = plan.title
@@ -19,7 +19,7 @@
           = "#{plan.registration_fee}円"
       .owner-info-hover{:style => "display: none; opacity: 1;"}
         %figure.shop-partner
-          %img{:alt => "", :height => "110", :s3 => "1", :src => "https://s3-ap-northeast-1.amazonaws.com/owners-pro/Partner/10/profile_image/w110h110_profile_RYOSFARM2+%281%29.jpeg", :ssl => "1", :width => "110"}/
+          %img{:alt => "", :height => "110", :s3 => "1", :src => "#{plan.captured_images.where('status="4"').first.content}", :ssl => "1", :width => "110"}/
         %p.shop-name
           = plan.shop_name
         / .partner-message

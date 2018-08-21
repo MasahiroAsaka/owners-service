@@ -69,10 +69,10 @@ def create_plans(link, i_image, a_image)
   title_image_url = reg_pre_title.pre_match
 
   #card_imageのurlの部分を抽出
-  str_card        = card_images[0].get_attribute('style').to_s
-  reg_card        = /\(/.match(str_card)
-  reg_post_card   = reg_card.post_match
-  reg_pre_card    = /\)/.match(reg_post_card)
+  str_card          = card_images[0].get_attribute('style').to_s
+  reg_card          = /\(/.match(str_card)
+  reg_post_card     = reg_card.post_match
+  reg_pre_card      = /\)/.match(reg_post_card)
   card_image_url_1  = reg_pre_card.pre_match
   if card_title[1].present?
     str_card_2        = card_images[1].get_attribute('style').to_s
