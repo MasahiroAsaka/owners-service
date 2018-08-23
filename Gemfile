@@ -45,8 +45,6 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
-  gem 'payjp'
-  gem 'mechanize'
 end
 
 group :development do
@@ -67,6 +65,8 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'redcarpet'
+gem 'payjp'
+gem 'mechanize'
 
 group :production do
   gem 'unicorn'
