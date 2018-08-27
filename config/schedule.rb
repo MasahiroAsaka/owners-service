@@ -1,12 +1,6 @@
 set :output, 'log/crontab.log'
-# every :sunday, at: '12pm' do # Use any day of the week or :weekend, :weekday
-#   runner "Scraping.plan_urls"
-# end
-
-every 1.minute do
-  # runner "Scraping.plan_urls"
-  # runner "scraping.rb"
-  command "echo 'HELLO!!'"
+every :monday, at: '7pm' do # Use any day of the week or :weekend, :weekday
+  runner "scraping.rb"
 end
 
 # Use this file to easily define all of your cron jobs.
