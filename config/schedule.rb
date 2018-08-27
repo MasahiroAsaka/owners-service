@@ -1,3 +1,4 @@
+set :output, 'log/crontab.log'
 # every :sunday, at: '12pm' do # Use any day of the week or :weekend, :weekday
 #   runner "Scraping.plan_urls"
 # end
