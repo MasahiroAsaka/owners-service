@@ -4,7 +4,8 @@ set :output, 'log/crontab.log'
 # end
 
 every 1.minute do
-  runner "Scraping.plan_urls"
+  # runner "Scraping.plan_urls"
+  runner "scraping.rb"
 end
 
 # Use this file to easily define all of your cron jobs.
