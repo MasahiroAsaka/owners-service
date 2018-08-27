@@ -1,3 +1,4 @@
+require "whenever/capistrano"
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.2"
 
@@ -17,7 +18,6 @@ set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 set :keep_releases, 5
 
 set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
