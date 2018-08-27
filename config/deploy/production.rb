@@ -1,4 +1,9 @@
 server '52.194.15.231', user: 'ec2-user', roles: %w{app db web}
+
+before_exec do |server|
+  ENV["BUNDLE_GEMFILE"] = File.join(File.expand_path("../../../../", __FILE__), "current", "Gemfile")
+end
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -7,7 +12,6 @@ server '52.194.15.231', user: 'ec2-user', roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
 
 
 # role-based syntax
