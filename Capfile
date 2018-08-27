@@ -21,8 +21,6 @@ require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
 # Include tasks from other gems included in your Gemfile
-require "whenever/capistrano"
-set :whenever_command, "bundle exec whenever"
 
 # For documentation on these, see for example:
 #
