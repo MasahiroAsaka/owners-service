@@ -67,6 +67,7 @@ gem 'mini_magick'
 gem 'redcarpet'
 gem 'payjp'
 gem 'mechanize'
+gem 'whenever', require: false
 
 group :production do
   gem 'unicorn'
