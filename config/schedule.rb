@@ -1,9 +1,5 @@
 set :output, 'log/crontab.log'
-# every :monday, at: '7pm' do # Use any day of the week or :weekend, :weekday
-#   runner "scraping.rb"
-# end
-
-every 3.minute do
+every :monday, at: '7pm' do # Use any day of the week or :weekend, :weekday
   runner "scraping.rb"
 end
 
