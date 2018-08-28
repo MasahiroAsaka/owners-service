@@ -18,4 +18,3 @@
 public/uploads/*
 config/local_env.yml
 /app/assets/images/contents
-scraping.rb
