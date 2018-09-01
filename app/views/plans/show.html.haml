@@ -36,7 +36,7 @@
                   = "#{@plan.closing_date_month}月"
                 %span>
                   = "#{@plan.closing_date_day}日"
-          %a.btn-green.ajax{:href => "/orders/select_cources/#{@plan.id}"} お申し込み
+          %a.btn-green.ajax{:href => "/orders/select_course/#{@plan.id}"} お申し込み
         / /layout-bpx
       / /product-data
       #product-content
@@ -148,7 +148,7 @@
           .sns-area
             %ul
               %li.fb-box
-                .fb-like{"data-href" => "https://owner-style.com/products/138", "data-layout" => "box_count"}
+                .fb-like{"data-href" => "https://owner-style.com/products/@plan.id", "data-layout" => "box_count"}
               %li.tw-box
                 %a.twitter-share-button{"data-count" => "vertical", "data-lang" => "ja", "data-url" => "https://owner-style.com/products/138", :href => "https://twitter.com/share"} ツイート
                 :javascript
@@ -160,7 +160,7 @@
                   %img{:alt => "このエントリーをはてなブックマークに追加", :height => "20", :src => "https://b.st-hatena.com/images/entry-button/button-only@2x.png", :style => "border: none;", :width => "20"}/
                 %script{:async => "async", :charset => "utf-8", :src => "https://b.st-hatena.com/js/bookmark_button.js", :type => "text/javascript"}
           .order
-            %a.btn-green.ajax{href: "orders/select_cources/138"} お申し込み
+            %a.btn-green.ajax{href: "/orders/select_course/#{@plan.id}"} お申し込み
 
       %section#course_list.plan_detail_list
         .container.pt-5
@@ -179,7 +179,7 @@
                     .price.mb-3
                       = "#{course.price}円"
                       %small （消費税・送料込み）
-                    %a.text-center{:href => "/orders/select_course/170"} このコースでオーナーになる
+                    %a.text-center{:href => "/orders/select_course/#{@plan.id}"} このコースでオーナーになる
                   - course.course_descriptions.each do |desc|
                     = sanitize desc.content, tags: %w(div h3 p br), attributes: %w(class)
           .single.card
