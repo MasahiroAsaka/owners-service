@@ -12,7 +12,6 @@ before_action  :set_plan, only: [:show]
 
   def create
     plan = Plan.new(create_plan_params)
-    binding.pry
     plan.save
   end
 
