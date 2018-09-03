@@ -21,7 +21,8 @@
 .purchase_guide_message.d-none.d-lg-block
   .title.mx-auto.text-center 各コースの口数を設定し、ご確認のうえ先におすすみください。
 
-%form#form{method: "POST"}
+/ %form#form{method: "POST"}
+= form_for @order, url: {action: "input"}, html: {id: "form"} do |f|
   .container-fluid.select_course_container
     .row
       .col
@@ -70,11 +71,19 @@
                   = "#{course.price} 円 / 1口"
               .col.text-center.align-self-center.course_count_container
                 %img{id: "count_button_decrement_#{course.id}", class: "count_button", "data-image-disabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus-disabled.svg", "data-image-enabled": "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus.svg", onclick: "decrement('#{course.id}')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-minus-disabled.svg"}
+
                 %span{id: "count_#{course.id}", class: "course_count"} 0
+
                 %img.count_button{onclick: "increment('#{course.id}')", src: "https://d1xgtamobon6ik.cloudfront.net/static/images/orders/select_course/count_button/icon-plus.svg"}
-                %input{id: "hidden_count_#{course.id}", class: "order-counter", type: "hidden", value: "0"}
+
+                / %input{id: "hidden_count_#{course.id}", class: "order-counter", type: "hidden", value: "0"}
+                = f.number_field :course_count_list, {id: "hidden_count_#{course.id}", class: "order-counter", type: "hidden", value: "0"}
+                = f.number_field :course_id_list, {type: "hidden", value: "#{course.id}"}
+                = f.number_field :owner_id, {type: "hidden", value: "#{current_owner.id}"}
+
               %div{id: "subtotal_#{course.id}", class: "col text-center align-self-center d-none d-lg-block", "data-price": "#{course.price}"}
                 = "0 円"
+
             .row
               %div{id: "accordion_body_#{course.id}", class: "collapse col align-self-center course_detail", "aria-labelledby": "accordion_heading_#{course.id}", "data-parent": "#select_course"}
                 .container.select_course_container
@@ -94,7 +103,9 @@
         .container.d-none.d-lg-block.left
           .row
             .col.text-right
-              %input{type: "submit", value: "お届け先指定へ"}
+              / %input{type: "submit", value: "お届け先指定へ"}
+              = f.submit "お届け先指定へ"
+
   .d-block.d-lg-none{style: "height: 114px"}
   .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
     .text-center.total_price_section
@@ -116,29 +127,26 @@
 
 :javascript
   function showLoadingModal() {
-    $('#loadingModal').modal({
-      show: true,
-      keyboard: false,
-      backdrop: 'static'
-    });
+  $('#loadingModal').modal({
+  show: true,
+  keyboard: false,
+  backdrop: 'static'
+  });
   }
 
   function hideLoadingModal() {
-    $('#loadingModal').modal('hide');
+  $('#loadingModal').modal('hide');
   }
 
-:javascript
   let lastTouch = 0;
   document.addEventListener('touchend', event => {
-    const now = window.performance.now();
-    if (now - lastTouch <= 500) {
-      event.preventDefault();
-    }
-    lastTouch = now;
+  const now = window.performance.now();
+  if (now - lastTouch <= 500) {
+  event.preventDefault();
+  }
+  lastTouch = now;
   }, true);
 
-%script{:charset => "UTF-8"}
-  / :cdata
   var course_selection_limit = {};
 
   course_selection_limit['20180813194041-3d-B7ejTKOzUNSUiCYIvBH'] = 85;
@@ -183,9 +191,6 @@
   // 合計
   var sum = 0;
   $.each(subtotal_data, function(course_id, subtotal) {
-
-  console.log('subtotal_data: ', subtotal_data, 'subtotal: ', subtotal, 'course_id: ', course_id);
-
   sum += parseInt(subtotal);
   });
   $('#sum').html(sum.toLocaleString() + ' 円');
@@ -206,20 +211,16 @@
   $('#triangle_' + course_id).toggleClass('triangle_rotate');
   }
 
-  $('#form').submit(function(){
+
+  $('#form').on('submit', function(){
   showLoadingModal();
 
   var c = 0;
   var course_id_list = [];
   var course_count_list = [];
+
   $(".order-counter").each(function(i, elem) {
-
-  console.log('i: ', i, 'elem: ', elem);
-
   var id = $(elem).attr('id').replace('hidden_count_', '');
-
-  console.log('id: ', id);
-
   var count = 0;
   if ($(elem).val() != '') {
   count = parseInt($(elem).val());
@@ -231,17 +232,14 @@
   c = c + count;
   });
 
-  console.log('c: ', c);
-
   if (c == 0) {
   hideLoadingModal();
   alert('コースが選択されていません');
   return false;
   }
 
-  $('#course_id_list').val(course_id_list.join(','));
-  $('#course_count_list').val(course_count_list.join(','));
+  $('#course_id_list').val(course_id_list.join(''));
+  $('#course_count_list').val(course_count_list.join(''));
 
   return true;
   });
-

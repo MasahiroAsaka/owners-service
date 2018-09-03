@@ -22,21 +22,24 @@
   .title.mx-auto.text-center
     お申込内容とお届け先はこちらでお間違いないでしょうか？よろしければお支払い設定へお進みください。
 
-%form#confirm_form{:method => "POST"}
+%form#confirm_form{method: "POST"}
   .container-fluid.select_course_container
     .row.justify-content-md-center
       .col-md-auto.d-none.d-lg-block.left
         .card.cource
-          %img.card_img_top{:alt => "plan_img", :src => "https://d1xgtamobon6ik.cloudfront.net/images/plan/118/image_square/20180729144626.jpg"}/
+          %img.card_img_top{alt: "plan_img", src: "#{@plan.captured_images.where('status="3"').first.content}"}
           .card_body
             .card_title
-              %img.owners_icon{:alt => "owner_icon", :src => "https://d1xgtamobon6ik.cloudfront.net/producer/10/profile_image/20180729151206.jpg"}/
-              %h5 プチプチ食感と濃厚な甘酸っぱさにファン急増中。南房総から届く「完熟パッションフルーツ」
+              %img.owners_icon{alt: "owner_icon", src: "#{@plan.captured_images.where('status="4"').first.content}"}
+              %h5
+                = @plan.title
             .footer
               .location
                 %img.location_icon{:src => "https://d1xgtamobon6ik.cloudfront.net/static/images/index/icon-location.svg"}/
-                %h7.location_name 千葉県館山市薗
-              %h6.price 4,900 円 〜
+                %h7.location_name
+                  = @plan.place
+              %h6.price
+                = "#{@plan.registration_fee} 円 〜"
       .col.right.m-0.p-0
         %table.address_table
           %tbody
@@ -350,4 +353,4 @@
     %button.justify-content-center.button_footer_sp.w-100{:onclick => "$('#confirm_form').submit()", :type => "button"} 利用規約に同意して進む
   %input#course_id_list{:name => "course_id_list", :type => "hidden"}/
   %input#course_count_list{:name => "course_count_list", :type => "hidden"}/
-  %input#csrf_token{:name => "csrf_token", :type => "hidden", :value => "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DklF1w.k9ELGUekjQC0sFZJlgoKZ1Yi6XE"}/
+  %input#csrf_token{:name => "csrf_token", :type => "hidden", :value => "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DklF1w.k9ELGUekjQC0sFZJlgoKZ1Yi6XE"}

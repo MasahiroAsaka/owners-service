@@ -1,0 +1,183 @@
+.wrapper_header
+  %header.header
+    = render "plans/header_header"
+.sticky
+  = render "plans/sticky"
+.d-none.d-lg-block
+  .d-flex.justify-content-center.align-items-center.w-100.progress_header
+    .d-flex.justify-content-start.progress_arrow
+      .done 1. コース選択
+      .arrow_right_done
+      .wip 2. お届け先の指定
+      .arrow_right_wip
+      .backlog 3. 申し込み内容・お届け先の確認
+      .arrow_right_backlog
+      .backlog 4. お支払い
+      .arrow_right_backlog
+      .backlog 5. 完了
+      .arrow_right_backlog
+.purchase_title.d-none.d-lg-block
+  .title.mx-auto.text-nowrap お届け先の指定
+.purchase_guide_message.d-none.d-lg-block
+  .title.mx-auto.text-center お届け先を指定してください。複数のお届け先を指定することもできます。
+
+/ %form#form{method: "POST"}
+= form_for @order, url: {action: "confirm"}, html: {id: "form"} do |order|
+  .container-fluid.purchase_main_container
+    .row
+      .col
+    .row
+      .col.m-0.p-0
+        %table.address_table
+          %tbody
+            %tr
+              %th.course_info.hidden_on_sp コース名/価格/口数
+              %th.hidden_on_sp お届け先
+
+              %tr
+                %td.course_info.hidden_on_sp.align-top
+                  - @course_id_list.zip(@course_count_list).each do |course_id, count|
+                    - if count != 0
+                      %h3
+                        = @plan.courses.find(course_id).title
+                      .d-flex.justify-content-between.price
+                        %div
+                          = @plan.courses.find(course_id).price + "円"
+                        %div
+                          = "#{count}口"
+                %td.align-top
+                  .d-block.d-lg-none.separated_form_title
+                    %h3
+                    .d-flex.justify-content-between.price
+                      %div
+                      %div
+                  .form-check
+                    %input#2332_0.form-check-input{name: "registered_address[0]", onclick: "clickAddressRadioButton(0, '2332_0')", type: "radio", value: "2332"}
+                    %label.form-check-label.radio{for: "2332_0"}
+                      %span 朝賀真弘 様
+                      〒352-0014 埼玉県 新座市栄 5-10-11
+                  %a.address_button{href: "javascript:showAddressForm(0)"} 新しいお届け先を追加する
+                  #collapse_0.collapse
+                    .card.card-body
+                      .h-adr
+                        .form-group
+                          %label{for: "name[0]"} 氏名:
+                          %label.required ※ 必須
+                          %input.form-control{id: "name[0]", name: "name[0]", placeholder: "氏名", type: "text", value: ""}
+                          .invalid-feedback 氏名を入力して下さい。
+                        .form-group
+                          %label{for: "zip_code_1[0]"} 郵便番号:
+                          %label.required ※ 必須
+                          .form-inline
+                            %input.form-control.postal_code.p-postal-code{maxlength: "3", name: "zip_code_1[0]", placeholder: "000", type: "text", value: ""}
+                            %span -
+                            %input.form-control.postal_code.p-postal-code{maxlength: "4", name: "zip_code_2[0]", placeholder: "0000", type: "text", value: ""}
+                        .form-group
+                          %label{for: "state[]"} 都道府県:
+                          %label.required ※ 必須
+                          %select.form-control.p-region{name: "state[0]"}
+                            %option{value: ""} -
+                            %option{value: "北海道"} 北海道
+                            %option{value: "青森県"} 青森県
+                            %option{value: "岩手県"} 岩手県
+                            %option{value: "宮城県"} 宮城県
+                            %option{value: "秋田県"} 秋田県
+                            %option{value: "山形県"} 山形県
+                            %option{value: "福島県"} 福島県
+                            %option{value: "茨城県"} 茨城県
+                            %option{value: "栃木県"} 栃木県
+                            %option{value: "群馬県"} 群馬県
+                            %option{value: "埼玉県"} 埼玉県
+                            %option{value: "千葉県"} 千葉県
+                            %option{value: "東京都"} 東京都
+                            %option{value: "神奈川県"} 神奈川県
+                            %option{value: "新潟県"} 新潟県
+                            %option{value: "富山県"} 富山県
+                            %option{value: "石川県"} 石川県
+                            %option{value: "福井県"} 福井県
+                            %option{value: "山梨県"} 山梨県
+                            %option{value: "長野県"} 長野県
+                            %option{value: "岐阜県"} 岐阜県
+                            %option{value: "静岡県"} 静岡県
+                            %option{value: "愛知県"} 愛知県
+                            %option{value: "三重県"} 三重県
+                            %option{value: "滋賀県"} 滋賀県
+                            %option{value: "京都府"} 京都府
+                            %option{value: "大阪府"} 大阪府
+                            %option{value: "兵庫県"} 兵庫県
+                            %option{value: "奈良県"} 奈良県
+                            %option{value: "和歌山県"} 和歌山県
+                            %option{value: "鳥取県"} 鳥取県
+                            %option{value: "島根県"} 島根県
+                            %option{value: "岡山県"} 岡山県
+                            %option{value: "広島県"} 広島県
+                            %option{value: "山口県"} 山口県
+                            %option{value: "徳島県"} 徳島県
+                            %option{value: "香川県"} 香川県
+                            %option{value: "愛媛県"} 愛媛県
+                            %option{value: "高知県"} 高知県
+                            %option{value: "福岡県"} 福岡県
+                            %option{value: "佐賀県"} 佐賀県
+                            %option{value: "長崎県"} 長崎県
+                            %option{value: "熊本県"} 熊本県
+                            %option{value: "大分県"} 大分県
+                            %option{value: "宮崎県"} 宮崎県
+                            %option{value: "鹿児島県"} 鹿児島県
+                            %option{value: "沖縄県"} 沖縄県
+                        .form-group
+                          %label 住所1:
+                          %label.required ※ 必須
+                          %input.form-control.p-locality.p-street-address{name: "address_1[0]", placeholder: "例）台東区松が谷", type: "text", value: ""}
+                          .invalid-feedback 住所を入力して下さい。
+                        .form-group
+                          %label 住所2 (番地, 建物名):※
+                          %label.required ※ 必須
+                          %input.form-control.p-extended-address{name: "address_2[0]", placeholder: "例）1-2-3 ○○ビル3階", type: "text", value: ""}
+                        .form-group
+                          %label{for: "exampleInputEmail1"} 電話番号:
+                          %label.required ※ 必須
+                          %input.form-control{name: "tel[0]", placeholder: "例）00-0000-0000", type: "tel", value: ""}
+                          .invalid-feedback 電話番号を入力して下さい。
+                        %input.p-country-name{type: "hidden", value: "Japan"}
+    .row
+      .col.p-2.p-lg-0
+        %hr
+        備考
+        %textarea.form-control{name: "description"}
+    .row
+      .col.m-0.p-0.pt-2.select_address_type
+        .form-group
+          %a.separated{href: "/orders/input/118?separated=1"} 複数の送り先を指定したい方はこちら
+    .row.d-none.d-lg-block
+      .col.p-0.d-flex.justify-content-end
+        %button.white{onclick: "location.href='/orders/select_course/#{@plan.id}'", type: "button"}
+          %i.arrow_left_green
+          戻る
+        %button#submit_button_pc.submit_button{type: "submit"}
+          %i.arrow_right_white
+          お申込み内容の確認へ
+  .d-block.d-lg-none{style: "height: 114px"}
+  .fixed-bottom.d-block.d-lg-none.d-xl-none.sp_purchase_footer
+    .text-center.total_price_section
+      %span.total_price
+        合計
+        %span#sum_sp 4,900
+        円
+      %span.tax_shipping_fee (税・送料込)
+    %button.justify-content-center.button_footer_sp.w-100{onclick: "$('#form').submit()", type: "button"} お申し込み内容の確認へ
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  / %input{:name => "csrf_token", :type => "hidden", value: "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DkkuSA.nVwktFEbaaY1-LwrGVdMIZKXKsg"}/
+
+%script{:charset => "UTF-8", :src => "https://yubinbango.github.io/yubinbango/yubinbango.js"}
+:javascript
+  function showAddressForm(index) {
+    var radio_button = $('input[name="registered_address[' + index + ']"]:checked');
+    if (radio_button.prop('checked')) {
+      radio_button.prop('checked', false);
+    }
+    $('#collapse_' + index).collapse('show');
+  }
+  function clickAddressRadioButton(index, radio_button_id) {
+    $('#collapse_' + index).collapse('hide');
+  }
+

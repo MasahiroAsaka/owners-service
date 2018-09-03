@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821030822) do
+ActiveRecord::Schema.define(version: 20180901073607) do
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                      null: false
+    t.string   "zip_code_1",                null: false
+    t.string   "zip_code_2",                null: false
+    t.string   "state",                     null: false
+    t.string   "address_1",                 null: false
+    t.string   "address_2",                 null: false
+    t.string   "tel",                       null: false
+    t.text     "description", limit: 65535
+    t.integer  "owner_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["owner_id"], name: "index_addresses_on_owner_id", using: :btree
+  end
+
+  create_table "adresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                      null: false
+    t.string   "zip_code_1",                null: false
+    t.string   "zip_code_2",                null: false
+    t.string   "state",                     null: false
+    t.string   "address_1",                 null: false
+    t.string   "address_2",                 null: false
+    t.string   "tel",                       null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "captured_image_courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -55,6 +83,15 @@ ActiveRecord::Schema.define(version: 20180821030822) do
     t.integer  "plan_id"
     t.text     "card_desc_summary", limit: 65535
     t.index ["plan_id"], name: "index_courses_on_plan_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "owner_id"
+    t.integer  "course_id_list"
+    t.integer  "course_count_list"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["owner_id"], name: "index_orders_on_owner_id", using: :btree
   end
 
   create_table "owners", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

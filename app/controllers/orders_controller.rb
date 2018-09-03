@@ -1,11 +1,23 @@
 class OrdersController < ApplicationController
-before_action  :set_plan, only: [:select_cources]
-before_action  :login_check, only: [:select_cources_2]
+before_action  :set_plan, only: [:select_course, :input, :confirm]
+before_action  :login_check, only: [:input]
+# before_action  :set_order, only: [:input]
 
-  def select_cources
+  def select_course
+    @order = Order.new
   end
 
-  def select_cources_2
+  def input
+    @course_id_list    = params[:course_id_list].each_char.map(&:to_i)
+    @course_count_list = params[:course_count_list].each_char.map(&:to_i)
+    @order = Order.new(create_order_params)
+
+    binding.pry
+
+  end
+
+  def confirm
+    binding.pry
   end
 
   def purchase_cvs
@@ -14,7 +26,7 @@ before_action  :login_check, only: [:select_cources_2]
   def purchase_credit_card
   end
 
-  def confirming
+  def completion
   end
 
   def login_check
@@ -24,8 +36,17 @@ before_action  :login_check, only: [:select_cources_2]
   end
 
   private
-  def set_plan
-    @plan = Plan.find(params[:id])
-  end
+
+    def set_plan
+      @plan = Plan.find(params[:id])
+    end
+
+    def create_order_params
+      params.require(:order).permit(
+        :owner_id,
+        :course_id_list,
+        :course_count_list
+      )
+    end
 
 end
