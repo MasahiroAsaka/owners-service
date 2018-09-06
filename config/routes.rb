@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   resources :plans, only:[:index, :show, :new, :create] do
     get 'pay', on: :collection
   end
+  resources :address, only: [:create]
   get   '/orders/select_course/:id',        to: 'orders#select_course'
   post  '/orders/input/:id',                to: 'orders#input'
   post  '/orders/confirm/:id',              to: 'orders#confirm'
+  post  '/orders/purchase/:id',             to: 'orders#purchase'
+  patch  '/orders/purchase/:id',             to: 'orders#purchase'
   get   '/orders/purchase/cvs/:id',         to: 'orders#purchase_cvs'
   get   '/orders/purchase/credit_card/:id', to: 'orders#purchase_credit_card'
   get   '/orders/purchase/confirming/:id',  to: 'orders#confirming'

@@ -117,6 +117,7 @@
     %button.justify-content-center.button_footer_sp.w-100{onclick: "$('#form').submit()", type: "button"} お届け先指定へ
   %input#course_id_list{name: "course_id_list", type: "hidden"}
   %input#course_count_list{name: "course_count_list", type: "hidden"}
+  = f.number_field   :sum, {id: "sum_price", type: "hidden"}
   = hidden_field_tag :authenticity_token, form_authenticity_token
   / %input{name: "csrf_token", type: "hidden", value: "IjlhYzA0OGFjMGZhYzhjYzBhZWNmMmRlZTRhMzI3ZmQ5YjM2NDM1Njki.DkbPbA.JpNrbLOO7D5YDQxGDIQ3R3lcx0E"}
 #loadingModal.modal{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
@@ -195,6 +196,7 @@
   });
   $('#sum').html(sum.toLocaleString() + ' 円');
   $('#sum_sp').html(sum.toLocaleString());
+  $('#sum_price').val(sum);
   }
 
   function increment(course_id) {

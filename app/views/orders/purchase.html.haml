@@ -28,17 +28,19 @@
       .mx-auto.total_price
         .text-center.title お支払い金額
         .separator
-        .text-center.price 4,900 円
+        .text-center.price
+          = number_with_delimiter(@sum_price) + "円"
+          / = number_with_delimiter(@order.sum) + "円"
         .text-center.tax_shipping_fee (税・送料込み)
   .row.button_row
     .col.text-center
-      %a.button{href: "/orders/purchase/cvs/118"}
+      %a.button{href: "/orders/purchase/cvs/#{@plan.id}"}
         %i.fas.fa-store
         コンビニ決済
         %i.fas.fa-angle-right
   .row.button_row
     .col.text-center
-      %a.button{href: "/orders/purchase/credit_card/118"}
+      %a.button{href: "/orders/purchase/credit_card/#{@plan.id}"}
         %i.far.fa-credit-card
         クレジットカード決済
         %i.fas.fa-angle-right
@@ -47,3 +49,20 @@
       %a.white{href: ""}
         %i.fas.fa-angle-left
         戻る
+
+  / = form_for @order, url: {action: "purchase"}, html: {id: "form"} do |f|
+  /   = f.number_field :owner_id, {type: "hidden", value: "#{current_owner.id}"}
+  /   = f.text_field   :course_id_list, {type: "hidden", value: "#{@course_id_list}"}
+  /   = f.text_field   :course_count_list, {type: "hidden", value: "#{@course_count_list}"}
+  /   = f.number_field :sum, {type: "hidden", value: "#{@sum_price}"}
+
+
+  / = form_for @address, url: {action: "purchase"} do |ad|
+  /   = ad.text_field :name, {type: "hidden", value: "#{@name}"}
+  /   = ad.text_field :zip_code_1, {type: "hidden", value: "#{@zip_code_1}"}
+  /   = ad.text_field :zip_code_2, {type: "hidden", value: "#{@zip_code_2}"}
+  /   = ad.text_field :state, {type: "hidden", value: "#{@state}"}
+  /   = ad.text_field :address_1, {type: "hidden", value: "#{@address_1}"}
+  /   = ad.text_field :address_2, {type: "hidden", value: "#{@address_2}"}
+  /   = ad.text_field :tel, {type: "hidden", value: "#{@tel}"}
+  /   = ad.number_field :owner_id, {type: "hidden", value: "#{current_owner.id}"}

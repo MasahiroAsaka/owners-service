@@ -32,7 +32,8 @@
         .mx-auto.total_price
           .text-center.title お支払い金額
           .separator
-          .text-center.price 4,900 円
+          .text-center.price
+            / = number_with_delimiter(@sum_price) + "円"
           .text-center.tax_shipping_fee (税・送料込み)
       .col.right.m-0.p-0
         %table.table.purchase_table

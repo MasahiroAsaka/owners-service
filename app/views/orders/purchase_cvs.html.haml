@@ -31,7 +31,8 @@
         .mx-auto.total_price
           .text-center.title お支払い金額
           .separator
-          .text-center.price 4,900 円
+          .text-center.price
+            / = number_with_delimiter(@sum_price) + "円"
           .text-center.tax_shipping_fee (税・送料込み)
       .col.right.m-0.p-0
         %table.table.purchase_table
@@ -56,7 +57,7 @@
               %td
                 .d-block.d-lg-none.d-xl-none
                   %label.form_title_sp お名前
-                %input#name.form-control{:name => "name", :placeholder => "例) 山田 太郎", :required => "", :type => "text", :value => "Masahiro Asaka"}/
+                %input#name.form-control{:name => "name", :placeholder => "例) 山田 太郎", :required => "", :type => "text", :value => ""}/
             %tr
               %th.d-none.d-lg-block フリガナ
               %td
@@ -74,7 +75,7 @@
               %td
                 .d-block.d-lg-none.d-xl-none
                   %label.form_title_sp ご連絡先メールアドレス
-                %input#email.form-control{:name => "email", :placeholder => "例) example@example.com", :required => "", :type => "email", :value => "pedestrem.paradiso@gmail.com"}/
+                %input#email.form-control{:name => "email", :placeholder => "例) example@example.com", :required => "", :type => "email", :value => ""}/
                 コンビニの払込番号が送信されます。
         .w-100.d-none.d-lg-block
           .row.justify-content-md-center

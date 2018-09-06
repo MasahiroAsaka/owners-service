@@ -22,7 +22,8 @@
   .title.mx-auto.text-center
     お申込内容とお届け先はこちらでお間違いないでしょうか？よろしければお支払い設定へお進みください。
 
-%form#confirm_form{method: "POST"}
+/ %form#confirm_form{method: "POST"}
+= form_for @order, url: {action: "purchase"}, html: {id: "form"} do |f|
   .container-fluid.select_course_container
     .row.justify-content-md-center
       .col-md-auto.d-none.d-lg-block.left
@@ -48,10 +49,15 @@
               %th.hidden_on_sp お届け先
             %tr
               %td.course_info.hidden_on_sp.align-top
-                %h3 お気軽「パッションフルーツ＆リリコイバター」コース
-                .d-flex.justify-content-between.price
-                  %div 4,900円
-                  %div 1口
+                - @course_id_list.zip(@course_count_list).each do |course_id, count|
+                  - if count != 0
+                    %h3
+                      = @plan.courses.find(course_id).title
+                    .d-flex.justify-content-between.price
+                      %div
+                        = @plan.courses.find(course_id).price + "円"
+                      %div
+                        = "#{count}口"
               %td.align-top.address_info
                 .d-block.d-lg-none
                   %h3 お気軽「パッションフルーツ＆リリコイバター」コース
@@ -72,8 +78,9 @@
         .selected_course_sum.d-none.d-lg-block.left
           .tax_shipping_fee (税・送料込み)
           .sum_title 合計
-          #sum.sum 4,900円
-          %hr/
+          #sum.sum
+            = number_with_delimiter(@sum_price) + "円"
+          %hr
         .terms.single-column
           %h2.center 利用規約
           %h3 第1章 総則
@@ -350,7 +357,24 @@
         %span#sum_sp 4,900
         円
       %span.tax_shipping_fee (税・送料込)
-    %button.justify-content-center.button_footer_sp.w-100{:onclick => "$('#confirm_form').submit()", :type => "button"} 利用規約に同意して進む
-  %input#course_id_list{:name => "course_id_list", :type => "hidden"}/
-  %input#course_count_list{:name => "course_count_list", :type => "hidden"}/
-  %input#csrf_token{:name => "csrf_token", :type => "hidden", :value => "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DklF1w.k9ELGUekjQC0sFZJlgoKZ1Yi6XE"}
+
+      = f.number_field :owner_id, {type: "hidden", value: "#{current_owner.id}"}
+      = f.text_field   :course_id_list, {type: "hidden", value: "#{@course_id_list}"}
+      = f.text_field   :course_count_list, {type: "hidden", value: "#{@course_count_list}"}
+      = f.number_field :sum, {type: "hidden", value: "#{@sum_price}"}
+      = f.submit "利用規約に同意して進む", class: "justify-content-center button_footer_sp w-100"
+
+  = form_for @address, url: {action: "purchase"} do |ad|
+    = ad.text_field :name, {type: "hidden", value: "#{@name}"}
+    = ad.text_field :zip_code_1, {type: "hidden", value: "#{@zip_code_1}"}
+    = ad.text_field :zip_code_2, {type: "hidden", value: "#{@zip_code_2}"}
+    = ad.text_field :state, {type: "hidden", value: "#{@state}"}
+    = ad.text_field :address_1, {type: "hidden", value: "#{@address_1}"}
+    = ad.text_field :address_2, {type: "hidden", value: "#{@address_2}"}
+    = ad.text_field :tel, {type: "hidden", value: "#{@tel}"}
+    = ad.number_field :owner_id, {type: "hidden", value: "#{current_owner.id}"}
+    / %button.justify-content-center.button_footer_sp.w-100{:onclick => "$('#confirm_form').submit()", :type => "button"} 利用規約に同意して進む
+
+  / %input#course_id_list{:name => "course_id_list", :type => "hidden"}/
+  / %input#course_count_list{:name => "course_count_list", :type => "hidden"}/
+  / %input#csrf_token{:name => "csrf_token", :type => "hidden", :value => "IjhlODE0MjMyYTNjMmM2ZWI0ZmU1ZDliNzQ5OWM2Yzc5M2ViYjgwMWEi.DklF1w.k9ELGUekjQC0sFZJlgoKZ1Yi6XE"}
